@@ -30,6 +30,8 @@ public:
 
     void insert();
     void search();
+
+    void deleteContent();
     
     ~TextEditor() {
         delete lineHead;

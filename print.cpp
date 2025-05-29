@@ -17,7 +17,9 @@ std::string getInput() {
     std::cout << "Enter text to append: "  << std::endl;;
 
     std::string input;
-    std::cin >> input;
+    std::cin.ignore();
+
+    std::getline(std::cin, input);
 
     return input;
 }

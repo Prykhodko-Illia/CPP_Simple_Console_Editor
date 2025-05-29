@@ -38,7 +38,7 @@ void TextEditor::insert() {
 
     start *indexPointer = getCharPointerByIndexes(lineHead, lineNumber, (index - 1));
 
-    std::string insertText = getInput(); //customize
+    std::string insertText = getInput(); //TODO: customize user input
 
     start *newStringFirst = nullptr;
     newStringFirst = convertStringToLinkedList(insertText, 32);

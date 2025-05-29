@@ -24,7 +24,7 @@ void clearHeap(line *lineHead) {
         while (currentChar != nullptr) {
             previousChar = currentChar;
             currentChar = currentChar->ptr;
-            free(previousChar);
+            delete previousChar;
         }
 
         previousLine = lineHead;

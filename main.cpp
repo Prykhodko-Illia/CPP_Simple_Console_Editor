@@ -43,6 +43,8 @@ int main() {
             case '7':
                 text_editor.search();
                 break;
+            case '8':
+                text_editor.deleteContent();
             case 'h':
                 if (command[1] == 'e' & command[2] == 'l' & command[3] == 'p') TextEditor::printHelpInfo();
                 break;

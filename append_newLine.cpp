@@ -1,5 +1,4 @@
 ﻿#include <iostream>
-#include <string>
 #include "TextEditor.h"
 
 line * getLastLine(line * firstLine) {
@@ -42,6 +41,16 @@ start * convertStringToLinkedList(std::string input, int size) {
     return head;
 }
 
+int getSize(start *head) {
+    int size = 0;
+    while (head != nullptr) {
+        head = head->ptr;
+        size++;
+    }
+
+    return size;
+}
+
 void TextEditor::append() {
     std::string input = getInput();
 
@@ -50,6 +59,13 @@ void TextEditor::append() {
 
     start *newText = nullptr;
     newText = convertStringToLinkedList(input, 32);
+
+    command *cmd = new command;
+    cmd->cmdNumber = 1;
+    cmd->ptr = newText;
+    cmd->size = getSize(newText);
+
+    undoStack.push(cmd);
 
     start *lastChar = nullptr;
     if (lastLine->content == nullptr) {
@@ -75,6 +91,11 @@ void TextEditor::newLine() {
     newLine->next = nullptr;
 
     getLastLine(lineHead)->next = newLine;
+
+    command *cmd = new command;
+    cmd->cmdNumber = 2;
+
+    undoStack.push(cmd);
 
     std::cout << "New line is started" << std::endl;
 }

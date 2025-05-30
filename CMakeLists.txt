@@ -12,4 +12,5 @@ add_executable(Console_Editor_Upgraded main.cpp
         insert.cpp
         search.cpp
         fileCommands.cpp
-        delete.cpp)
+        delete.cpp
+        undo.cpp)

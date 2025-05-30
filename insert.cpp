@@ -30,18 +30,8 @@ start * getCharPointerByIndexes(line *head, int lineNumber, int charNumber) {
     return currentChar;
 }
 
-void TextEditor::insert() {
-    std::cout << "Choose line and index:";
-    int lineNumber = 0, index = 0;
-
-    std::cin >> lineNumber >> index;
-
+void internalInsert(line *lineHead, command *cmd, start *newStringFirst, int lineNumber, int index) {
     start *indexPointer = getCharPointerByIndexes(lineHead, lineNumber, (index - 1));
-
-    std::string insertText = getInput(); //TODO: customize user input
-
-    start *newStringFirst = nullptr;
-    newStringFirst = convertStringToLinkedList(insertText, 32);
 
     if (indexPointer == nullptr) {
         line *currentLine = nullptr;
@@ -56,16 +46,39 @@ void TextEditor::insert() {
         }
 
         currentLine->content = newStringFirst;
-        return;
+    } else {
+        start *newStringLast = nullptr;
+        newStringLast = newStringFirst;
+
+        while (newStringLast->ptr != nullptr) {
+            newStringLast = newStringLast->ptr;
+        }
+
+        newStringLast->ptr = indexPointer->ptr;
+        indexPointer->ptr = newStringFirst;
     }
+};
 
-    start *newStringLast = nullptr;
-    newStringLast = newStringFirst;
+void TextEditor::insert() {
+    std::cout << "Choose line and index:";
+    int lineNumber = 0, index = 0;
 
-    while (newStringLast->ptr != nullptr) {
-        newStringLast = newStringLast->ptr;
-    }
+    std::cin >> lineNumber >> index;
 
-    newStringLast->ptr = indexPointer->ptr;
-    indexPointer->ptr = newStringFirst;
+    command* cmd = new command;
+    cmd->cmdNumber = 6;
+    cmd->lineNum = lineNumber + 1;
+    cmd->index = index;
+
+    std::string insertText = getInput(); //TODO: customize user input
+    start *newStringFirst = nullptr;
+
+    newStringFirst = convertStringToLinkedList(insertText, 32);
+
+    cmd->size = getSize(newStringFirst);
+    cmd->ptr = newStringFirst;
+
+    internalInsert(lineHead, cmd, newStringFirst, lineNumber, index);
+
+    undoStack.push(cmd);
 }

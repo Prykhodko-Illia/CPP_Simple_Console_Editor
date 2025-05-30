@@ -3,11 +3,14 @@
 
 #include "structures.cpp"
 #include "library.h"
+#include <stack>
 
 
 class TextEditor {
 private:
     line *lineHead = nullptr;
+    std::stack<command *> undoStack;
+    std::stack<command *> redoStack;
 
 public:
     TextEditor() {
@@ -32,6 +35,9 @@ public:
     void search();
 
     void deleteContent();
+
+    void undo();
+    // void redo();
     
     ~TextEditor() {
         delete lineHead;

@@ -27,7 +27,9 @@ int main() {
                 case '\0':
                     text_editor.append();
                     break;
-                // case '0':
+                case '0':
+                    text_editor.redo();
+                    break;
             default:
                 break;
             }

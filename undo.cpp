@@ -42,6 +42,7 @@ void undoDelete(line *lineHead, command *currentCommand) {
 void TextEditor::undo() {
     if (undoStack.empty()) {
         std::cout << "The stack is empty" << std::endl;
+        return;
     }
 
     command *currentCommand = undoStack.top();
@@ -59,8 +60,9 @@ void TextEditor::undo() {
             undoDelete(lineHead, currentCommand);
             break;
         default:
-            break;
+            return;
     }
 
+    redoStack.push(currentCommand);
     undoStack.pop();
 }

@@ -13,4 +13,5 @@ add_executable(Console_Editor_Upgraded main.cpp
         search.cpp
         fileCommands.cpp
         delete.cpp
-        undo.cpp)
+        undo.cpp
+        redo.cpp)

@@ -19,3 +19,5 @@ int searchInLine(start *, std::string);
 void printString(start *);
 void internalDelete(line *, command*, int, int, int);
 void internalInsert(line *, command *, start *, int, int);
+void internalAppend(line *, start *);
+void internalNewLine(line *);

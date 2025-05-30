@@ -37,7 +37,7 @@ public:
     void deleteContent();
 
     void undo();
-    // void redo();
+    void redo();
     
     ~TextEditor() {
         delete lineHead;

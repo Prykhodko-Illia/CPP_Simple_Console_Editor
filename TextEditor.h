@@ -11,6 +11,7 @@ private:
     line *lineHead = nullptr;
     std::stack<command *> undoStack;
     std::stack<command *> redoStack;
+    start *copyBuffer = nullptr;
 
 public:
     TextEditor() {
@@ -38,6 +39,10 @@ public:
 
     void undo();
     void redo();
+
+    void cut();
+    void paste();
+    void copy();
     
     ~TextEditor() {
         delete lineHead;

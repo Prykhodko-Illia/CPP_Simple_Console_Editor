@@ -16,8 +16,10 @@ start * getCharPointerByIndexes(line *, int, int);
 int getSize(start *);
 int searchInLine(start *, std::string);
 
+void deleteString(start *);
 void printString(start *);
-void internalDelete(line *, command*, int, int, int);
-void internalInsert(line *, command *, start *, int, int);
+
 void internalAppend(line *, start *);
 void internalNewLine(line *);
+void internalDelete(line *, command*, int, int, int);
+void internalInsert(line *, start *, int, int);

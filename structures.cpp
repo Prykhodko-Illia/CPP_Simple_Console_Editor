@@ -1,6 +1,4 @@
-﻿#include <iostream>
-
-struct start {
+﻿struct start {
     char value;
     start *ptr;
 };

@@ -11,12 +11,12 @@ void TextEditor::printHelpInfo() {
     std::cout << "6 - insert at [line] [index]" << std::endl;
     std::cout << "7 - searching string in the text" << std::endl;
     std::cout << "8 - delete at [line] [index]" << std::endl;
-    std::cout << "9 - undo command" << std::endl;
-    std::cout << "10 - redo command" << std::endl;
-    std::cout << "11 - undo command" << std::endl;
-    std::cout << "12 - cut command" << std::endl;
-    std::cout << "13 - paste command" << std::endl;
-    std::cout << "14 - copy command" << std::endl;
+    std::cout << "9 - undo" << std::endl;
+    std::cout << "10 - redo" << std::endl;
+    std::cout << "11 - cut" << std::endl;
+    std::cout << "12 - paste" << std::endl;
+    std::cout << "13 - copy" << std::endl;
+    std::cout << "14 - insert with replacement" <<std::endl;
     std::cout << std::endl;
     std::cout << "0 - end execution" << std::endl;
     std::cout << std::endl;

@@ -43,6 +43,8 @@ public:
     void cut();
     void paste();
     void copy();
+
+    void insert_replacement();
     
     ~TextEditor() {
         delete lineHead;

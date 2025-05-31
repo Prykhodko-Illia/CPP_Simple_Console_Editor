@@ -39,6 +39,8 @@ int main() {
                 case '3':
                     text_editor.copy();
                     break;
+                case '4':
+                    text_editor.insert_replacement();
             default:
                 break;
             }

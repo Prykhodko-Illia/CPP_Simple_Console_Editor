@@ -13,6 +13,10 @@ private:
     std::stack<command *> redoStack;
     start *copyBuffer = nullptr;
 
+    // start *cursorPoint = nullptr;
+    int cursorLine = 1;
+    int cursorChar = 0;
+
 public:
     TextEditor() {
         lineHead = new line;
@@ -28,6 +32,8 @@ public:
     int saveToFile();
     void load () {
         lineHead = loadFromFile(lineHead);
+        int cursorLine = 1;
+        int cursorChar = 0;
     }
 
     void printAll();
@@ -45,9 +51,11 @@ public:
     void copy();
 
     void insert_replacement();
+
+    void setCursor();
     
     ~TextEditor() {
-        delete lineHead;
+        clearHeap(lineHead);
     }
 };
 

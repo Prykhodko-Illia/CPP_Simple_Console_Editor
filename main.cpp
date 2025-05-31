@@ -41,6 +41,10 @@ int main() {
                     break;
                 case '4':
                     text_editor.insert_replacement();
+                    break;
+                case '5':
+                    text_editor.setCursor();
+                    break;
             default:
                 break;
             }

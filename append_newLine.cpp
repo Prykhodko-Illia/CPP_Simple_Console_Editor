@@ -73,14 +73,18 @@ void TextEditor::append() {
     start *newText = nullptr;
     newText = convertStringToLinkedList(input, 32);
 
+    int size = getSize(newText);
+
     command *cmd = new command;
     cmd->cmdNumber = 1;
     cmd->ptr = newText;
-    cmd->size = getSize(newText);
+    cmd->size = size;
 
     undoStack.push(cmd);
 
-    internalAppend(lineHead, newText);
+    internalInsert(lineHead, newText, cursorLine, cursorChar);
+
+    cursorChar += size;
 
     std::cout << std::endl << "Successfully added" << std::endl;
 }
@@ -94,12 +98,32 @@ void internalNewLine(line *lineHead) {
     getLastLine(lineHead)->next = newLine;
 }
 
+void internalNewCursorLine(line *lineHead, int lineIdx) {
+    line *newLine = nullptr;
+    newLine = new line;
+    newLine->content = nullptr;
+    newLine->next = nullptr;
+
+    line *current = lineHead;
+    int i = 1;
+    while (current->next != nullptr && i < lineIdx) {
+        current = current->next;
+        i++;
+    }
+
+    if (current->next) newLine->next = current->next;
+    current->next = newLine;
+}
+
 void TextEditor::newLine() {
-    internalNewLine(lineHead);
+    internalNewCursorLine(lineHead, cursorLine);
+    cursorLine++;
+    cursorChar = 0;
 
     command *cmd = new command;
     cmd->cmdNumber = 2;
     undoStack.push(cmd);
+
 
     std::cout << "New line is started" << std::endl;
 }

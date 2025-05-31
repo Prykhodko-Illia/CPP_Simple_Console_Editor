@@ -17,6 +17,7 @@ int getSize(start *);
 int searchInLine(start *, std::string);
 
 void deleteString(start *);
+void clearHeap(line *);
 void printString(start *);
 
 void internalAppend(line *, start *);

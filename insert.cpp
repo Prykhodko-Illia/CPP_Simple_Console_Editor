@@ -91,8 +91,8 @@ void TextEditor::insert() {
 
     command* cmd = new command;
     cmd->cmdNumber = 6;
-    cmd->lineNum = lineNumber + 1;
-    cmd->index = index;
+    cmd->lineNum = lineNumber;
+    cmd->index = index + 1;
 
     std::string insertText = getInput(); //TODO: customize user input
     start *newStringFirst = nullptr;

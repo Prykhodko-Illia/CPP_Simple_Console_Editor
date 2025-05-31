@@ -28,6 +28,7 @@ void undoAppendLine(line *lineHead, command *currentCommand) {
         charIdx++;
     }
 
+    if (charIdx != 0) charIdx++;
     internalDelete(lineHead, nullptr, lineIdx, charIdx, currentCommand->size);
 }
 
@@ -37,6 +38,15 @@ void undoInsert(line *lineHead, command *currentCommand) {
 
 void undoDelete(line *lineHead, command *currentCommand) {
     internalInsert(lineHead, currentCommand->ptr, currentCommand->lineNum, currentCommand->index);
+}
+
+void undoInsertReplacement(line *lineHead, command *currentCommand) {
+    command *temp = new command;
+    internalDelete(lineHead, temp, currentCommand->lineNum, currentCommand->index, currentCommand->size);
+    internalInsert(lineHead, currentCommand->ptr, currentCommand->lineNum, currentCommand->index);
+
+    currentCommand->ptr = temp->ptr;
+    delete temp;
 }
 
 void TextEditor::undo() {
@@ -54,10 +64,14 @@ void TextEditor::undo() {
             undoDeleteLine(lineHead);
             break;
         case 6:
+        case 12:
             undoInsert(lineHead, currentCommand);
             break;
         case 8:
             undoDelete(lineHead, currentCommand);
+            break;
+        case 14:
+            undoInsertReplacement(lineHead, currentCommand);
             break;
         default:
             return;

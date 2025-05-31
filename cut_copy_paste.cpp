@@ -31,7 +31,16 @@ void TextEditor::paste() {
     int lineIdx, charIdx;
     std::cin >> lineIdx >> charIdx;
 
+    command* cmd = new command;
+    cmd->cmdNumber = 12;
+    cmd->lineNum = lineIdx;
+    cmd->index = charIdx;
+    cmd->size = getSize(copyBuffer);
+    cmd->ptr = copyBuffer;
+
     internalInsert(lineHead, copyBuffer, lineIdx, charIdx);
+
+    undoStack.push(cmd);
 }
 
 

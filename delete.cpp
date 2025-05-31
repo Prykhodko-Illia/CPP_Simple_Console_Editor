@@ -36,20 +36,24 @@ void internalDelete(line *lineHead, command *cmd, int lineNum, int index, int si
 }
 
 void TextEditor::deleteContent() {
-    std::cout << "Choose line, index and number of symbols" << std::endl;
+    // std::cout << "Choose line, index and number of symbols" << std::endl;
+    //
+    // int lineNum, index, size;
+    // std::cin >> lineNum >> index >> size;
 
-    int lineNum, index, size, i = 0;
-    std::cin >> lineNum >> index >> size;
+    std::cout << "Choose number of size to delete" << std::endl;
+    int size;
+    std::cin >> size;
 
     if (size == 0) return;
 
     command *cmd = new command;
     cmd->cmdNumber = 8;
-    cmd->lineNum = lineNum;
-    cmd->index = index;
+    cmd->lineNum = cursorLine;
+    cmd->index = cursorChar;
     cmd->size = size;
 
-    internalDelete(lineHead, cmd, lineNum, index, size);
+    internalDelete(lineHead, cmd, cursorLine, cursorChar, size);
 
     undoStack.push(cmd);
 

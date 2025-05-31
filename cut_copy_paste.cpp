@@ -11,14 +11,18 @@ void deleteString(start *first) {
 }
 
 void TextEditor::cut() {
-    std::cout << "Choose line and index and number of symbols:" << std::endl;
+    // std::cout << "Choose line and index and number of symbols:" << std::endl;
+    //
+    // int lineIdx, charIdx, size;
+    // std::cin >> lineIdx >> charIdx >> size;
 
-    int lineIdx, charIdx, size;
-    std::cin >> lineIdx >> charIdx >> size;
+    std::cout << "Choose number of symbols to cut" << std::endl;
+    int size;
+    std::cin >> size;
 
     command *cmd = new command;
 
-    internalDelete(lineHead, cmd, lineIdx, charIdx, size);
+    internalDelete(lineHead, cmd, cursorLine, cursorChar, size);
 
     deleteString(copyBuffer);
     copyBuffer = cmd->ptr;
@@ -26,33 +30,40 @@ void TextEditor::cut() {
 }
 
 void TextEditor::paste() {
-    std::cout << "Choose line and index" << std::endl;
+    // std::cout << "Choose line and index" << std::endl;
+    //
+    // int lineIdx, charIdx;
+    // std::cin >> lineIdx >> charIdx;
 
-    int lineIdx, charIdx;
-    std::cin >> lineIdx >> charIdx;
+    int size = getSize(copyBuffer);
 
     command* cmd = new command;
     cmd->cmdNumber = 12;
-    cmd->lineNum = lineIdx;
-    cmd->index = charIdx;
-    cmd->size = getSize(copyBuffer);
+    cmd->lineNum = cursorLine;
+    cmd->index = cursorChar;
+    cmd->size = size;
     cmd->ptr = copyBuffer;
 
-    internalInsert(lineHead, copyBuffer, lineIdx, charIdx);
+    internalInsert(lineHead, copyBuffer, cursorLine, cursorChar);
+    cursorChar += size;
 
     undoStack.push(cmd);
 }
 
 
 void TextEditor::copy() {
-    std::cout << "Choose line and index and number of symbols:" << std::endl;
+    // std::cout << "Choose line and index and number of symbols:" << std::endl;
+    //
+    // int lineIdx, charIdx, size, i = 1;
+    // std::cin >> lineIdx >> charIdx >> size;
 
-    int lineIdx, charIdx, size, i = 1;
-    std::cin >> lineIdx >> charIdx >> size;
+    std::cout << "Choose number of symbols to cut" << std::endl;
+    int size, i = 1;
+    std::cin >> size;
 
     if (size == 0) return;
 
-    start *indexPointer = getCharPointerByIndexes(lineHead, lineIdx, charIdx);
+    start *indexPointer = getCharPointerByIndexes(lineHead, cursorLine, cursorChar);
     start *currentChar = nullptr;
 
     currentChar = new start;

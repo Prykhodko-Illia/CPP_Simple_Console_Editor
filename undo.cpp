@@ -36,7 +36,7 @@ void undoInsert(line *lineHead, command *currentCommand) {
 }
 
 void undoDelete(line *lineHead, command *currentCommand) {
-    internalInsert(lineHead, nullptr, currentCommand->ptr, currentCommand->lineNum, currentCommand->index);
+    internalInsert(lineHead, currentCommand->ptr, currentCommand->lineNum, currentCommand->index);
 }
 
 void TextEditor::undo() {

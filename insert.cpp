@@ -30,7 +30,31 @@ start * getCharPointerByIndexes(line *head, int lineNumber, int charNumber) {
     return currentChar;
 }
 
-void internalInsert(line *lineHead, command *cmd, start *newStringFirst, int lineNumber, int index) {
+void internalInsert(line *lineHead, start *newStringFirst, int lineNumber, int index) {
+    if (index == 0) {
+        line *currentLine = nullptr;
+        currentLine = lineHead;
+
+        for (int i = 1; i < lineNumber; i++) {
+            if (currentLine->next == nullptr) {
+                break;
+            }
+
+            currentLine = currentLine->next;
+        }
+
+        if (currentLine->content == nullptr) currentLine->content = newStringFirst;
+        else {
+            start *currentChar = newStringFirst;
+            while (currentChar->ptr != nullptr) currentChar = currentChar->ptr;
+
+            currentChar->ptr = currentLine->content;
+            currentLine->content = newStringFirst;
+        }
+
+        return;
+    }
+
     start *indexPointer = getCharPointerByIndexes(lineHead, lineNumber, (index - 1));
 
     if (indexPointer == nullptr) {
@@ -78,7 +102,7 @@ void TextEditor::insert() {
     cmd->size = getSize(newStringFirst);
     cmd->ptr = newStringFirst;
 
-    internalInsert(lineHead, cmd, newStringFirst, lineNumber, index);
+    internalInsert(lineHead, newStringFirst, lineNumber, index);
 
     undoStack.push(cmd);
 }

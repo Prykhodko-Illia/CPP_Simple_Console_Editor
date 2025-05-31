@@ -19,13 +19,7 @@ char * getFilePath(char *filePath) {
 void clearHeap(line *lineHead) {
     line *previousLine = nullptr;
     while (lineHead != nullptr) {
-        start *currentChar = lineHead->content, *previousChar = nullptr;
-
-        while (currentChar != nullptr) {
-            previousChar = currentChar;
-            currentChar = currentChar->ptr;
-            delete previousChar;
-        }
+        deleteString(lineHead->content);
 
         previousLine = lineHead;
         lineHead = lineHead->next;

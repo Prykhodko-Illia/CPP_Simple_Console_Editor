@@ -9,7 +9,7 @@ void redoNewLine(line *lineHead) {
 };
 
 void redoInsert(line *lineHead, command *currentCommand) {
-    internalInsert(lineHead, nullptr, currentCommand->ptr, currentCommand->lineNum, currentCommand->index);
+    internalInsert(lineHead, currentCommand->ptr, currentCommand->lineNum, currentCommand->index);
 }
 
 void redoDelete(line *lineHead, command *currentCommand) {

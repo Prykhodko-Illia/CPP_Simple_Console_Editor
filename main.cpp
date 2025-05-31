@@ -30,6 +30,15 @@ int main() {
                 case '0':
                     text_editor.redo();
                     break;
+                case '1':
+                    text_editor.cut();
+                    break;
+                case '2':
+                    text_editor.paste();
+                    break;
+                case '3':
+                    text_editor.copy();
+                    break;
             default:
                 break;
             }

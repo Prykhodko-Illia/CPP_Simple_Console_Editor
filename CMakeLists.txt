@@ -15,4 +15,5 @@ add_executable(Console_Editor_Upgraded main.cpp
         delete.cpp
         undo.cpp
         redo.cpp
-        cut_copy_paste.cpp)
+        cut_copy_paste.cpp
+        insert_replacement.cpp)

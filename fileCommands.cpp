@@ -7,7 +7,7 @@ char * getFilePath(char *filePath) {
 
     int i = 0;
     while ((fileName[i] != '\n') || (fileName[i] != '\0')) {
-        filePath[42 + i] = fileName[i];
+        filePath[4 + i] = fileName[i];
         i++;
 
         if (i > 15) break;
@@ -31,7 +31,7 @@ void clearHeap(line *lineHead) {
 int TextEditor::saveToFile() {
     FILE* file = nullptr;
 
-    char filePath[60] = "D://Programs//C_projects//Console_Editor//";
+    char filePath[30] = "..//";
     printf("Enter the file name for saving:\n");
 
     file = fopen(getFilePath(filePath), "w");
@@ -61,7 +61,7 @@ int TextEditor::saveToFile() {
 
     fclose(file);
 
-    printf("Content were successfully written to myfile.txt\n");
+    printf("Content were successfully written to the file\n");
 
     return 0;
 }
@@ -72,7 +72,7 @@ line * loadFromFile(line *lineHead) {
     char fileContent[100];
     std::cout << "Enter the file name for loading:" << std::endl;
 
-    char filePath[60] = "D://Programs//C_projects//Console_Editor//";
+    char filePath[30] = "..//";
 
     file = fopen(getFilePath(filePath), "r");
 

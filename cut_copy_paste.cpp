@@ -57,7 +57,7 @@ void TextEditor::copy() {
     // int lineIdx, charIdx, size, i = 1;
     // std::cin >> lineIdx >> charIdx >> size;
 
-    std::cout << "Choose number of symbols to cut" << std::endl;
+    std::cout << "Choose number of symbols to copy" << std::endl;
     int size, i = 1;
     std::cin >> size;
 

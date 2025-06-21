@@ -6,15 +6,6 @@
 
 struct line {
     line *next = nullptr;
-
-    // line * getNext() {
-    //     return next;
-    // }
-    //
-    // void setNext(line *nextLine) {
-    //     next = nextLine;
-    // }
-
     virtual ~line() {};
 };
 

@@ -23,7 +23,7 @@ void internalDelete(textLine *lineHead, command *cmd, int lineNum, int index, in
         int j = 0;
 
         while (currentLine->next != nullptr && j < (lineNum - 1)) {
-            currentLine = currentLine->next;
+            currentLine = dynamic_cast<textLine *>(currentLine->next);
             j++;
         }
 

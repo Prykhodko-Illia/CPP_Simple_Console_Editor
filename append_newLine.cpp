@@ -1,8 +1,8 @@
 ﻿#include <iostream>
 #include "TextEditor.h"
 
-textLine * getLastLine(textLine * firstLine) {
-    textLine *temporary = nullptr;
+line * getLastLine(line * firstLine) {
+    line *temporary = nullptr;
     temporary = firstLine;
 
     int i = 0;
@@ -53,7 +53,7 @@ int getSize(start *head) {
 
 void internalAppend(textLine *lineHead, start *newText) {
     textLine * lastLine = nullptr;
-    lastLine = getLastLine(lineHead);
+    lastLine = dynamic_cast<textLine *>(getLastLine(lineHead));
 
     start *lastChar = nullptr;
 
@@ -107,7 +107,7 @@ void internalNewCursorLine(textLine *lineHead, int lineIdx) {
     textLine *current = lineHead;
     int i = 1;
     while (current->next != nullptr && i < lineIdx) {
-        current = current->next;
+        current = dynamic_cast<textLine *>(current->next);
         i++;
     }
 

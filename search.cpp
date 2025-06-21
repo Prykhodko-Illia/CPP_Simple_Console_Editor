@@ -38,7 +38,7 @@ void TextEditor::search() {
         lineCounter++;
 
         if (currentLine->content == nullptr) {
-            currentLine = currentLine->next;
+            currentLine = dynamic_cast<textLine *>(currentLine->next);
             continue;
         }
 
@@ -65,6 +65,6 @@ void TextEditor::search() {
         }
 
         if (currentLine->next == nullptr) break;
-        currentLine = currentLine->next;
+        currentLine = dynamic_cast<textLine *>(currentLine->next);
     }
 }

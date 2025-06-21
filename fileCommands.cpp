@@ -22,7 +22,7 @@ void clearHeap(textLine *lineHead) {
         deleteString(lineHead->content);
 
         previousLine = lineHead;
-        lineHead = lineHead->next;
+        lineHead = dynamic_cast<textLine *>(lineHead->next);
 
         delete previousLine;
     }
@@ -56,7 +56,7 @@ int TextEditor::saveToFile() {
         }
 
         fputs("\n", file);
-        currentLine = currentLine->next;
+        currentLine = dynamic_cast<textLine *>(currentLine->next);
     }
 
     fclose(file);
@@ -99,7 +99,7 @@ textLine * loadFromFile(textLine *lineHead) {
         for (int i = 0; (fileContent[i] != '\0') && (i < 100); i++) {
             if (fileContent[i] == '\n') {
                 currentLine->next = new textLine;
-                currentLine = currentLine->next;
+                currentLine = dynamic_cast<textLine *>(currentLine->next);
 
                 currentLine->content = nullptr;
                 currentLine->next = nullptr;

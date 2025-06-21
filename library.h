@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-textLine * getLastLine(textLine *);
+line * getLastLine(line *);
 textLine * loadFromFile(textLine *);
 
 std::string getInput();

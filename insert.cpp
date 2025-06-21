@@ -11,7 +11,7 @@ start * getCharPointerByIndexes(textLine *head, int lineNumber, int charNumber) 
             break;
         }
 
-        currentLine = currentLine->next;
+        currentLine = dynamic_cast<textLine *>(currentLine->next);
     }
 
     start *currentChar = nullptr;
@@ -40,7 +40,7 @@ void internalInsert(textLine *lineHead, start *newStringFirst, int lineNumber, i
                 break;
             }
 
-            currentLine = currentLine->next;
+            currentLine = dynamic_cast<textLine *>(currentLine->next);
         }
 
         if (currentLine->content == nullptr) currentLine->content = newStringFirst;
@@ -66,7 +66,7 @@ void internalInsert(textLine *lineHead, start *newStringFirst, int lineNumber, i
                 break;
             }
 
-            currentLine = currentLine->next;
+            currentLine = dynamic_cast<textLine *>(currentLine->next);
         }
 
         currentLine->content = newStringFirst;

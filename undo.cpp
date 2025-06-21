@@ -5,7 +5,7 @@ void undoDeleteLine(textLine *lineHead) {
     textLine *previous = nullptr;
     while (temp->next != nullptr) {
         previous = temp;
-        temp = temp->next;
+        temp = dynamic_cast<textLine *>(temp->next);
     }
 
     if (previous != nullptr) previous->next = nullptr;
@@ -18,7 +18,7 @@ void undoAppendLine(textLine *lineHead, command *currentCommand) {
 
     textLine *lastLine = lineHead;
     while (lastLine->next != nullptr) {
-        lastLine = lastLine->next;
+        lastLine = dynamic_cast<textLine *>(lastLine->next);
         lineIdx++;
     }
 

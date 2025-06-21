@@ -5,12 +5,21 @@
 
 
 struct line {
-    line *next;
+    line *next = nullptr;
+
+    // line * getNext() {
+    //     return next;
+    // }
+    //
+    // void setNext(line *nextLine) {
+    //     next = nextLine;
+    // }
+
+    virtual ~line() {};
 };
 
 struct textLine : line {
     start *content;
-    textLine *next;
 };
 
 struct infoLine : line{

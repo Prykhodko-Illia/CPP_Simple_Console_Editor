@@ -59,7 +59,7 @@ void TextEditor::printAll() {
         } else {
             std::cout  << std::endl;;
         }
-        temporary = temporary->next;
+        temporary = dynamic_cast<textLine *>(temporary->next);
     }
 
     if (temporary->content != nullptr) {

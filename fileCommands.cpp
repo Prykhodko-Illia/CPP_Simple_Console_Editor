@@ -16,8 +16,8 @@ char * getFilePath(char *filePath) {
     return filePath;
 }
 
-void clearHeap(line *lineHead) {
-    line *previousLine = nullptr;
+void clearHeap(textLine *lineHead) {
+    textLine *previousLine = nullptr;
     while (lineHead != nullptr) {
         deleteString(lineHead->content);
 
@@ -42,7 +42,7 @@ int TextEditor::saveToFile() {
         return 1;
     }
 
-    line *currentLine = nullptr;
+    textLine *currentLine = nullptr;
     currentLine = lineHead;
 
     start *currentChar = nullptr;
@@ -66,7 +66,7 @@ int TextEditor::saveToFile() {
     return 0;
 }
 
-line * loadFromFile(line *lineHead) {
+textLine * loadFromFile(textLine *lineHead) {
     FILE* file = nullptr;
 
     char fileContent[100];
@@ -84,11 +84,11 @@ line * loadFromFile(line *lineHead) {
 
     clearHeap(lineHead);
 
-    lineHead = new line;
+    lineHead = new textLine;
     lineHead->content = nullptr;
     lineHead->next = nullptr;
 
-    line *currentLine = nullptr;
+    textLine *currentLine = nullptr;
     currentLine = lineHead;
 
     while (fgets(fileContent, 100, file)) {
@@ -98,7 +98,7 @@ line * loadFromFile(line *lineHead) {
 
         for (int i = 0; (fileContent[i] != '\0') && (i < 100); i++) {
             if (fileContent[i] == '\n') {
-                currentLine->next = new line;
+                currentLine->next = new textLine;
                 currentLine = currentLine->next;
 
                 currentLine->content = nullptr;

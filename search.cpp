@@ -26,7 +26,7 @@ void TextEditor::search() {
     std::string textForSearch;
     std::cin >> textForSearch;
 
-    line *currentLine = nullptr;
+    textLine *currentLine = nullptr;
     currentLine = lineHead;
 
     int lineCounter = 0;

@@ -1,22 +1,22 @@
 ﻿#include "TextEditor.h"
 
-void redoAppend(line *lineHead, command *currentCommand) {
+void redoAppend(textLine *lineHead, command *currentCommand) {
     internalAppend(lineHead, currentCommand->ptr);
 }
 
-void redoNewLine(line *lineHead) {
+void redoNewLine(textLine *lineHead) {
     internalNewLine(lineHead);
 };
 
-void redoInsert(line *lineHead, command *currentCommand) {
+void redoInsert(textLine *lineHead, command *currentCommand) {
     internalInsert(lineHead, currentCommand->ptr, currentCommand->lineNum, currentCommand->index);
 }
 
-void redoDelete(line *lineHead, command *currentCommand) {
+void redoDelete(textLine *lineHead, command *currentCommand) {
     internalDelete(lineHead, nullptr, currentCommand->lineNum, currentCommand->index, currentCommand->size);
 }
 
-void redoInsertReplacement(line *lineHead, command *currentCommand) {
+void redoInsertReplacement(textLine *lineHead, command *currentCommand) {
     command *temp = new command;
     internalDelete(lineHead, temp, currentCommand->lineNum, currentCommand->index, currentCommand->size);
     internalInsert(lineHead, currentCommand->ptr, currentCommand->lineNum, currentCommand->index);

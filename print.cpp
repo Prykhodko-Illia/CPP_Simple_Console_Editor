@@ -50,7 +50,7 @@ void printString(start *head) {
 }
 
 void TextEditor::printAll() {
-    line *temporary = nullptr;
+    textLine *temporary = nullptr;
     temporary = lineHead;
 
     while ((temporary)->next != nullptr) {

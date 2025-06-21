@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include "TextEditor.h"
 #include "library.h"
-void internalDelete(line *lineHead, command *cmd, int lineNum, int index, int size) {
+void internalDelete(textLine *lineHead, command *cmd, int lineNum, int index, int size) {
     int i = 0;
 
     start *indexPointer = getCharPointerByIndexes(lineHead, lineNum, index - 1);
@@ -19,7 +19,7 @@ void internalDelete(line *lineHead, command *cmd, int lineNum, int index, int si
     }
 
     if (index == 0) {
-        line *currentLine = lineHead;
+        textLine *currentLine = lineHead;
         int j = 0;
 
         while (currentLine->next != nullptr && j < (lineNum - 1)) {

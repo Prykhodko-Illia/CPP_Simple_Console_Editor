@@ -3,9 +3,19 @@
     start *ptr;
 };
 
+
 struct line {
-    start *content;
     line *next;
+};
+
+struct textLine : line {
+    start *content;
+    textLine *next;
+};
+
+struct infoLine : line{
+    start *name, *surname;
+    start *email;
 };
 
 struct command {

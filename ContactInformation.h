@@ -7,17 +7,17 @@
 int getNumber(const std::string text) {
     int line = 0;
 
-    std::cout << "Write" << text << "number" << std::endl;
+    std::cout << text << std::endl;
     std::cin >> line;
 
     return line;
 }
 
-infoLine * getLine(infoLine *infoLineHead, int line) {
+line * getLine(line *infoLineHead, int lineNum) {
     int i = 0;
 
-    infoLine *temp = infoLineHead;
-    while (temp->next != nullptr && i < line) {
+    line *temp = infoLineHead;
+    while (temp->next != nullptr && i < lineNum) {
         temp = dynamic_cast<infoLine *>(temp->next);
         ++i;
     }
@@ -42,17 +42,20 @@ void setInField(infoLine *line, const std::string fieldName) {
     if (fieldName == "email") line->email = value;
 }
 
-void infoLineInitialization(infoLine *linePointer) {
+void infoLineInitialization(infoLine *linePointer, bool nextFlag) {
     linePointer->name = nullptr;
     linePointer->surname = nullptr;
     linePointer->email = nullptr;
-    linePointer->next = nullptr;
+
+    if (nextFlag) {
+        linePointer->next = nullptr;
+    }
 }
 
 void infoLineClearing(infoLine *linePointer, bool nextFlag) {
-    linePointer->name = nullptr;
-    linePointer->surname = nullptr;
-    linePointer->email = nullptr;
+    deleteString(linePointer->name);
+    deleteString(linePointer->surname);
+    deleteString(linePointer->email);
 
     if (nextFlag) {
         linePointer->next = nullptr;
@@ -71,12 +74,13 @@ private:
 public:
     ContactInformation() {
         infoLineHead = new infoLine;
-        infoLineInitialization(infoLineHead);
+        infoLineInitialization(infoLineHead, true);
         linesCount = 1;
     }
 
     void SetInfo() {
-        infoLine *newLine = getLine(infoLineHead, getNumber("the line to set info "));
+        infoLine *newLine = dynamic_cast<infoLine *>(
+            getLine(infoLineHead, getNumber("Write the line number to set info in ")));
 
         setInField(newLine, "name");
         setInField(newLine, "surname");
@@ -84,7 +88,8 @@ public:
     }
 
     void EditInfo() {
-        infoLine *newLine = getLine(infoLineHead, getNumber("the line to edit "));
+        infoLine *newLine = dynamic_cast<infoLine *>(
+            getLine(infoLineHead, getNumber("Write the line number to edit")));
 
         int fN = 0, fS = 0, fE = 0;
         std::cout << "Write 1 if you want to edit: Name/Surname/Email "
@@ -100,13 +105,17 @@ public:
         infoLineHead->next = new infoLine;
 
         infoLine *newLine = dynamic_cast<infoLine *>(infoLineHead->next);
-        infoLineInitialization(newLine);
+        infoLineInitialization(newLine, true);
+
+        setInField(newLine, "name");
+        setInField(newLine, "surname");
+        setInField(newLine, "email");
 
         ++linesCount;
     }
 
     void DeleteInfo() {
-        int line = getNumber("the line to delete ");
+        int line = getNumber("Write the line number to delete");
 
         if (line < 1) {
             std::cout << "Lines numbers are integers";
@@ -114,20 +123,20 @@ public:
         }
 
         if (line == 1) {
-            infoLineClearing(infoLineHead, false);
+            infoLineInitialization(infoLineHead, false);
 
             if (infoLineHead->next != nullptr) {
                 infoLineHead = dynamic_cast<infoLine *>(infoLineHead->next);
                 --linesCount;
             }
         } else if (line >= linesCount) {
-            infoLine *previousLine = getLine(infoLineHead, linesCount - 1);
+            infoLine *previousLine = dynamic_cast<infoLine *>(getLine(infoLineHead, linesCount - 1));
             infoLineClearing(dynamic_cast<infoLine *>(previousLine->next), true);
 
             previousLine->next = nullptr;
             --linesCount;
         } else {
-            infoLine *previousLine = getLine(infoLineHead, linesCount - 1);
+            infoLine *previousLine = dynamic_cast<infoLine *>(getLine(infoLineHead, linesCount - 1));
             infoLine *lineToDelete = dynamic_cast<infoLine *>(previousLine->next);
 
             infoLineClearing(lineToDelete, false);

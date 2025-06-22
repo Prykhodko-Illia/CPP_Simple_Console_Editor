@@ -3,19 +3,23 @@
     start *ptr;
 };
 
-
 struct line {
     line *next = nullptr;
     virtual ~line() {};
 };
 
-struct textLine : line {
+struct textLine final : line {
     start *content;
 };
 
-struct infoLine : line{
+struct infoLine final : line {
     start *name, *surname;
     start *email;
+};
+
+struct checkLine final : line {
+    start *context;
+    bool status = false;
 };
 
 struct command {

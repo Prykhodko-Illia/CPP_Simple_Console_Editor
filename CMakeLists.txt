@@ -19,4 +19,6 @@ add_executable(Console_Editor_Upgraded main.cpp
         insert_replacement.cpp
         set_cursor.cpp
         ContactInformation.cpp
-        ContactInformation.h)
+        ContactInformation.h
+        checkbox.cpp
+        CheckBox.h)

@@ -4,6 +4,7 @@
 #include <iostream>
 
 line * getLastLine(line *);
+line * getLine(line *, int);
 textLine * loadFromFile(textLine *);
 
 std::string getInput();
@@ -11,6 +12,7 @@ std::string getInput();
 start * convertStringToLinkedList(std::string , int);
 start * getCharPointerByIndexes(textLine *, int, int);
 
+int getNumber(const std::string);
 int getSize(start *);
 int searchInLine(start *, std::string);
 

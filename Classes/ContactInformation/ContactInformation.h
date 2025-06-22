@@ -15,6 +15,8 @@ public:
         linesCount = 1;
     }
 
+    static void printHelpInfo();
+
     void setInfo();
     void editInfo();
     void newLine();

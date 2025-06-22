@@ -7,7 +7,6 @@ add_executable(Console_Editor_Upgraded main.cpp
         Classes/ConsoleEditor/ConsoleEditor.h
         GeneralCommands/structures.cpp
         GeneralCommands/library.h
-        Classes/ConsoleEditor/print.cpp
         Classes/ConsoleEditor/fileCommands.cpp
         Classes/ConsoleEditor/undo.cpp
         Classes/ConsoleEditor/redo.cpp
@@ -28,8 +27,9 @@ add_executable(Console_Editor_Upgraded main.cpp
         Classes/TextInformation/delete_text.cpp
         Classes/TextInformation/cut_copy_paste_text.cpp
         Classes/TextInformation/print_text.cpp
-        GeneralCommands/check_box_scope.cpp
-        GeneralCommands/text_information_scope.cpp
-        GeneralCommands/contact_information_scope.cpp
+        Scopes/check_box_scope.cpp
+        Scopes/text_information_scope.cpp
+        Scopes/contact_information_scope.cpp
         Classes/TextInformation/print_help_text.cpp
-        scopes.h)
+        Scopes/scopes.h
+        Classes/ContactInformation/print_help_information.cpp)

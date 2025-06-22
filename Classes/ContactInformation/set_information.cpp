@@ -3,7 +3,11 @@
 void setInField(infoLine *line, const std::string &fieldName) {
     std::cout << "Write " << fieldName << " to set in: " << std::endl;
 
-    start *value = convertStringToLinkedList(getInput(), 32);
+    start *value = nullptr;
+    {
+        std::string input = getInput();
+        value = convertStringToLinkedList(input, 32);
+    }
 
     if (fieldName == "name") line->name = value;
     if (fieldName == "surname") line->surname = value;
@@ -34,9 +38,10 @@ void ContactInformation::editInfo() {
 }
 
 void ContactInformation::newLine() {
-    infoLineHead->next = new infoLine;
+    infoLine *lastLine = dynamic_cast<infoLine *>(getLastLine(infoLineHead));
+    lastLine->next = new infoLine;
 
-    auto *newLine = dynamic_cast<infoLine *>(infoLineHead->next);
+    auto *newLine = dynamic_cast<infoLine *>(lastLine->next);
     infoLineInitialization(newLine, true);
 
     setInField(newLine, "name");

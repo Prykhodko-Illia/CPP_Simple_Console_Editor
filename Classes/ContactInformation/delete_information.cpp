@@ -26,13 +26,13 @@ void ContactInformation::deleteInfo() {
             --linesCount;
         }
     } else if (line >= linesCount) {
-        auto *previousLine = dynamic_cast<infoLine *>(getLine(infoLineHead, linesCount - 1));
+        auto *previousLine = dynamic_cast<infoLine *>(getLine(infoLineHead, linesCount - 2));
         infoLineClearing(dynamic_cast<infoLine *>(previousLine->next), true);
 
         previousLine->next = nullptr;
         --linesCount;
     } else {
-        auto *previousLine = dynamic_cast<infoLine *>(getLine(infoLineHead, linesCount - 1));
+        auto *previousLine = dynamic_cast<infoLine *>(getLine(infoLineHead, linesCount - 2));
         auto *lineToDelete = dynamic_cast<infoLine *>(previousLine->next);
 
         infoLineClearing(lineToDelete, false);

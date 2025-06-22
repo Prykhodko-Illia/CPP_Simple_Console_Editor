@@ -102,7 +102,7 @@ void deleteString(start *first) {
     }
 }
 
-void printString(start *head) {
+void printString(start *head, bool endLine) {
     start *temp = nullptr;
     temp = head;
 
@@ -113,7 +113,9 @@ void printString(start *head) {
         i++;
     }
 
-    std::cout << temp->value  << std::endl;;
+    std::cout << temp->value;
+
+    if (endLine) std::cout << std::endl;
 }
 
 void clearHeap(textLine *lineHead) {

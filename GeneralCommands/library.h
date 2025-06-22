@@ -20,7 +20,7 @@ int searchInLine(start *, std::string);
 
 void deleteString(start *);
 void clearHeap(textLine *);
-void printString(start *);
+void printString(start *, bool = true);
 
 void internalAppend(textLine *, start *);
 void internalNewLine(textLine *);

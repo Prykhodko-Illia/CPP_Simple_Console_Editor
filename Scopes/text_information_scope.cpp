@@ -1,11 +1,10 @@
 ﻿#include "../Classes/TextInformation/TextInformation.h"
-#include "../scopes.h"
+#include "scopes.h"
 
 int textInformationScope() {
-     TextInformation text_editor = TextInformation();
+     TextInformation text_information = TextInformation();
 
      while (true) {
-
          std::string command = getCommand();
 
          if (command[0] == '0') {
@@ -16,39 +15,38 @@ int textInformationScope() {
          case '1':
              switch (command[1]) {
                  case '\0':
-                     text_editor.append();
+                     text_information.append();
                      break;
                  case '0':
-                     text_editor.setCursor();
+                     text_information.setCursor();
                      break;
              default:
                  break;
              }
-
              break;
          case '2':
-             text_editor.newLine();
+             text_information.newLine();
              break;
          case '3':
-             text_editor.insert();
+             text_information.insert();
              break;
          case '4':
-             text_editor.search();
+             text_information.search();
              break;
          case '5':
-             text_editor.deleteContent();
+             text_information.deleteContent();
                  break;
          case '6':
-             text_editor.cut();
+             text_information.cut();
              break;
          case '7':
-             text_editor.paste();
+             text_information.paste();
              break;
          case '8':
-             text_editor.copy();
+             text_information.copy();
              break;
          case '9':
-             text_editor.insert_replacement();
+             text_information.insert_replacement();
              break;
          case 'h':
              if (command[1] == 'e' & command[2] == 'l' & command[3] == 'p') TextInformation::printHelpInfo();

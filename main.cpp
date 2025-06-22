@@ -1,9 +1,9 @@
-﻿#include "scopes.h"
+﻿#include "Scopes/scopes.h"
 
 int main() {
     int i = 0;
     while (true) {
-        textInformationScope();
+        contactInformationScope();
         ++i;
         if (i == 10) break;
     }

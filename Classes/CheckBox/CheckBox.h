@@ -2,7 +2,6 @@
 #define CHECKBOX_H
 
 #include "../../GeneralCommands/library.h"
-#include "../../GeneralCommands/structures.cpp"
 
 class CheckBox {
 private:
@@ -24,7 +23,7 @@ public:
 
     void deleteCheckLine();
 
-    void printCheckbox();
+    void printCheckBox();
 
     ~CheckBox() {
         //write full implementation

@@ -7,7 +7,7 @@ void printCheckLine(checkLine *line) {
     std::cout << " " << line->context;
 }
 
-void CheckBox::printCheckbox() {
+void CheckBox::printCheckBox() {
     checkLine *temp = checkLineHead;
 
     while (temp != nullptr) {

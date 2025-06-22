@@ -1,4 +1,4 @@
-﻿#include "TextEditor.h"
+﻿#include "ConsoleEditor.h"
 
 void undoDeleteLine(textLine *lineHead) {
     textLine *temp = lineHead;
@@ -48,35 +48,35 @@ void undoInsertReplacement(textLine *lineHead, command *currentCommand) {
     currentCommand->ptr = temp->ptr;
     delete temp;
 }
-
-void TextEditor::undo() {
-    if (undoStack.empty()) {
-        std::cout << "The stack is empty" << std::endl;
-        return;
-    }
-
-    command *currentCommand = undoStack.top();
-    switch (currentCommand->cmdNumber) {
-        case 1:
-            undoAppendLine(lineHead, currentCommand);
-            break;
-        case 2:
-            undoDeleteLine(lineHead);
-            break;
-        case 6:
-        case 12:
-            undoInsert(lineHead, currentCommand);
-            break;
-        case 8:
-            undoDelete(lineHead, currentCommand);
-            break;
-        case 14:
-            undoInsertReplacement(lineHead, currentCommand);
-            break;
-        default:
-            return;
-    }
-
-    redoStack.push(currentCommand);
-    undoStack.pop();
-}
+//
+// void ConsoleEditor::undo() {
+//     if (undoStack.empty()) {
+//         std::cout << "The stack is empty" << std::endl;
+//         return;
+//     }
+//
+//     command *currentCommand = undoStack.top();
+//     switch (currentCommand->cmdNumber) {
+//         case 1:
+//             undoAppendLine(lineHead, currentCommand);
+//             break;
+//         case 2:
+//             undoDeleteLine(lineHead);
+//             break;
+//         case 6:
+//         case 12:
+//             undoInsert(lineHead, currentCommand);
+//             break;
+//         case 8:
+//             undoDelete(lineHead, currentCommand);
+//             break;
+//         case 14:
+//             undoInsertReplacement(lineHead, currentCommand);
+//             break;
+//         default:
+//             return;
+//     }
+//
+//     redoStack.push(currentCommand);
+//     undoStack.pop();
+// }

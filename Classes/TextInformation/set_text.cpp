@@ -1,5 +1,4 @@
-﻿#include <iostream>
-#include "TextEditor.h"
+﻿#include "TextInformation.h";
 
 void internalAppend(textLine *lineHead, start *newText) {
     textLine * lastLine = nullptr;
@@ -17,7 +16,7 @@ void internalAppend(textLine *lineHead, start *newText) {
     }
 }
 
-void TextEditor::append() {
+void TextInformation::append() {
     std::string input = getInput();
 
     start *newText = nullptr;
@@ -25,12 +24,12 @@ void TextEditor::append() {
 
     int size = getSize(newText);
 
-    command *cmd = new command;
-    cmd->cmdNumber = 1;
-    cmd->ptr = newText;
-    cmd->size = size;
-
-    undoStack.push(cmd);
+    // command *cmd = new command;
+    // cmd->cmdNumber = 1;
+    // cmd->ptr = newText;
+    // cmd->size = size;
+    //
+    // undoStack.push(cmd);
 
     internalInsert(lineHead, newText, cursorLine, cursorChar);
 
@@ -65,15 +64,14 @@ void internalNewCursorLine(textLine *lineHead, int lineIdx) {
     current->next = newLine;
 }
 
-void TextEditor::newLine() {
+void TextInformation::newLine() {
     internalNewCursorLine(lineHead, cursorLine);
     cursorLine++;
     cursorChar = 0;
 
-    command *cmd = new command;
-    cmd->cmdNumber = 2;
-    undoStack.push(cmd);
-
+    // command *cmd = new command;
+    // cmd->cmdNumber = 2;
+    // undoStack.push(cmd);
 
     std::cout << "New line is started" << std::endl;
 }

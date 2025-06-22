@@ -1,8 +1,8 @@
 ﻿#include <iostream>
 
-#include "TextEditor.h"
+#include "ConsoleEditor.h"
 
-void TextEditor::printHelpInfo() {
+void ConsoleEditor::printHelpInfo() {
     std::cout << "Available commands:" << std::endl;
     std::cout << "1 - append to the last" << std::endl;
     std::cout << "2 - start new line" << std::endl;
@@ -22,22 +22,4 @@ void TextEditor::printHelpInfo() {
     std::cout << std::endl;
     std::cout << "0 - end execution" << std::endl;
     std::cout << std::endl;
-}
-
-void TextEditor::printAll() {
-    textLine *temporary = nullptr;
-    temporary = lineHead;
-
-    while ((temporary)->next != nullptr) {
-        if (temporary->content != nullptr) {
-            printString(temporary->content);
-        } else {
-            std::cout  << std::endl;;
-        }
-        temporary = dynamic_cast<textLine *>(temporary->next);
-    }
-
-    if (temporary->content != nullptr) {
-        printString(temporary->content);
-    } else {std::cout  << std::endl;;}
 }

@@ -1,7 +1,6 @@
-﻿#include "TextEditor.h"
+﻿#include "TextInformation.h"
 
-
-void TextEditor::cut() {
+void TextInformation::cut() {
     // std::cout << "Choose line and index and number of symbols:" << std::endl;
     //
     // int lineIdx, charIdx, size;
@@ -20,7 +19,7 @@ void TextEditor::cut() {
     delete cmd;
 }
 
-void TextEditor::paste() {
+void TextInformation::paste() {
     // std::cout << "Choose line and index" << std::endl;
     //
     // int lineIdx, charIdx;
@@ -42,7 +41,7 @@ void TextEditor::paste() {
 }
 
 
-void TextEditor::copy() {
+void TextInformation::copy() {
     // std::cout << "Choose line and index and number of symbols:" << std::endl;
     //
     // int lineIdx, charIdx, size, i = 1;

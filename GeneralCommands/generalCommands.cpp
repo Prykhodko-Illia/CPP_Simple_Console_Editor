@@ -1,6 +1,12 @@
-﻿
-#include "library.h"
-#include "structures.cpp"
+﻿#include "library.h"
+
+std::string getCommand() {
+    std::string command;
+    std::cout << "Choose the command:" << std::endl << ">";
+    std::cin >> command;
+
+    return command;
+}
 
 line * getLine(line *infoLineHead, int lineNum) {
     int i = 0;
@@ -108,6 +114,18 @@ void printString(start *head) {
     }
 
     std::cout << temp->value  << std::endl;;
+}
+
+void clearHeap(textLine *lineHead) {
+    textLine *previousLine = nullptr;
+    while (lineHead != nullptr) {
+        deleteString(lineHead->content);
+
+        previousLine = lineHead;
+        lineHead = dynamic_cast<textLine *>(lineHead->next);
+
+        delete previousLine;
+    }
 }
 
 //Information Class

@@ -1,7 +1,6 @@
 ﻿#ifndef CONTACTINFORMATION_H
 #define CONTACTINFORMATION_H
 
-#include "../../GeneralCommands/structures.cpp"
 #include "../../GeneralCommands/library.h"
 
 class ContactInformation {

@@ -1,6 +1,5 @@
-﻿#include <iostream>
-#include "TextEditor.h"
-#include "../../GeneralCommands/library.h"
+﻿#include "TextInformation.h"
+
 void internalDelete(textLine *lineHead, command *cmd, int lineNum, int index, int size) {
     int i = 0;
 
@@ -35,7 +34,7 @@ void internalDelete(textLine *lineHead, command *cmd, int lineNum, int index, in
     if (previousChar) previousChar->ptr = nullptr;
 }
 
-void TextEditor::deleteContent() {
+void TextInformation::deleteContent() {
     // std::cout << "Choose line, index and number of symbols" << std::endl;
     //
     // int lineNum, index, size;
@@ -47,15 +46,15 @@ void TextEditor::deleteContent() {
 
     if (size == 0) return;
 
-    command *cmd = new command;
-    cmd->cmdNumber = 8;
-    cmd->lineNum = cursorLine;
-    cmd->index = cursorChar;
-    cmd->size = size;
+    // command *cmd = new command;
+    // cmd->cmdNumber = 8;
+    // cmd->lineNum = cursorLine;
+    // cmd->index = cursorChar;
+    // cmd->size = size;
 
-    internalDelete(lineHead, cmd, cursorLine, cursorChar, size);
+    internalDelete(lineHead, nullptr, cursorLine, cursorChar, size);
 
-    undoStack.push(cmd);
+    // undoStack.push(cmd);
 
     std::cout << "Succesfully deleted" << std::endl;
 }

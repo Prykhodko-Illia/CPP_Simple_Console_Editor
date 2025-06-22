@@ -2,6 +2,7 @@
 #define LIBRARY_H
 
 #include <iostream>
+#include "structures.cpp"
 
 line * getLastLine(line *);
 line * getLine(line *, int);

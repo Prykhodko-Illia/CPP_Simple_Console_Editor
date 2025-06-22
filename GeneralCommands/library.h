@@ -9,10 +9,10 @@ textLine * loadFromFile(textLine *);
 
 std::string getInput();
 
-start * convertStringToLinkedList(std::string , int);
+start * convertStringToLinkedList(const std::string &, int);
 start * getCharPointerByIndexes(textLine *, int, int);
 
-int getNumber(const std::string);
+int getNumber(const std::string &);
 int getSize(start *);
 int searchInLine(start *, std::string);
 
@@ -24,5 +24,8 @@ void internalAppend(textLine *, start *);
 void internalNewLine(textLine *);
 void internalDelete(textLine *, command*, int, int, int);
 void internalInsert(textLine *, start *, int, int);
+
+
+void infoLineInitialization(infoLine *, bool);
 
 #endif //LIBRARY_H

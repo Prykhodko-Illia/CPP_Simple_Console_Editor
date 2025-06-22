@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include "TextEditor.h"
+#include "Classes/TextEditor/TextEditor.h"
 // #include "ContactInformation.h"
 
 std::string getCommand() {

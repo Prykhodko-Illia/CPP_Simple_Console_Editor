@@ -1,14 +1,5 @@
 ﻿#include "TextEditor.h"
 
-void deleteString(start *first) {
-    start *currentChar = first, *previousChar = nullptr;
-
-    while (currentChar != nullptr) {
-        previousChar = currentChar;
-        currentChar = currentChar->ptr;
-        delete previousChar;
-    }
-}
 
 void TextEditor::cut() {
     // std::cout << "Choose line and index and number of symbols:" << std::endl;

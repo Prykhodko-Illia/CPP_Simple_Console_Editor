@@ -5,7 +5,7 @@
 
 struct line {
     line *next = nullptr;
-    virtual ~line() {};
+    virtual ~line() = default;
 };
 
 struct textLine final : line {

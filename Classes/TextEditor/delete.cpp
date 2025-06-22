@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include "TextEditor.h"
-#include "library.h"
+#include "../../GeneralCommands/library.h"
 void internalDelete(textLine *lineHead, command *cmd, int lineNum, int index, int size) {
     int i = 0;
 

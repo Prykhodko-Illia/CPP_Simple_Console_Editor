@@ -24,31 +24,6 @@ void TextEditor::printHelpInfo() {
     std::cout << std::endl;
 }
 
-std::string getInput() {
-    std::cout << "Enter text to append: "  << std::endl;;
-
-    std::string input;
-    std::cin.ignore();
-
-    std::getline(std::cin, input);
-
-    return input;
-}
-
-void printString(start *head) {
-    start *temp = nullptr;
-    temp = head;
-
-    int i = 0;
-    while ((temp->ptr != nullptr) && (i < 1000)) {
-        std::cout << temp->value;
-        temp = temp->ptr;
-        i++;
-    }
-
-    std::cout << temp->value  << std::endl;;
-}
-
 void TextEditor::printAll() {
     textLine *temporary = nullptr;
     temporary = lineHead;

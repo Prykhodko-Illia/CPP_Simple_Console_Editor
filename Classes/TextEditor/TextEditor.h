@@ -1,8 +1,8 @@
 ﻿#ifndef TEXTEDITOR_H
 #define TEXTEDITOR_H
 
-#include "structures.cpp"
-#include "library.h"
+#include "../../GeneralCommands/structures.cpp"
+#include "../../GeneralCommands/library.h"
 #include <stack>
 
 

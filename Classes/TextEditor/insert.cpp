@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include "TextEditor.h"
-#include "library.h"
+#include "../../GeneralCommands/library.h"
 
 start * getCharPointerByIndexes(textLine *head, int lineNumber, int charNumber) {
     textLine *currentLine = nullptr;

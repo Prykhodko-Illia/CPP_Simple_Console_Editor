@@ -2,8 +2,8 @@
 #include "TextEditor.h"
 #include "library.h"
 
-start * getCharPointerByIndexes(line *head, int lineNumber, int charNumber) {
-    line *currentLine = nullptr;
+start * getCharPointerByIndexes(textLine *head, int lineNumber, int charNumber) {
+    textLine *currentLine = nullptr;
     currentLine = head;
 
     for (int i = 1; i < lineNumber; i++) {
@@ -11,7 +11,7 @@ start * getCharPointerByIndexes(line *head, int lineNumber, int charNumber) {
             break;
         }
 
-        currentLine = currentLine->next;
+        currentLine = dynamic_cast<textLine *>(currentLine->next);
     }
 
     start *currentChar = nullptr;
@@ -30,9 +30,9 @@ start * getCharPointerByIndexes(line *head, int lineNumber, int charNumber) {
     return currentChar;
 }
 
-void internalInsert(line *lineHead, start *newStringFirst, int lineNumber, int index) {
+void internalInsert(textLine *lineHead, start *newStringFirst, int lineNumber, int index) {
     if (index == 0) {
-        line *currentLine = nullptr;
+        textLine *currentLine = nullptr;
         currentLine = lineHead;
 
         for (int i = 1; i < lineNumber; i++) {
@@ -40,7 +40,7 @@ void internalInsert(line *lineHead, start *newStringFirst, int lineNumber, int i
                 break;
             }
 
-            currentLine = currentLine->next;
+            currentLine = dynamic_cast<textLine *>(currentLine->next);
         }
 
         if (currentLine->content == nullptr) currentLine->content = newStringFirst;
@@ -58,7 +58,7 @@ void internalInsert(line *lineHead, start *newStringFirst, int lineNumber, int i
     start *indexPointer = getCharPointerByIndexes(lineHead, lineNumber, (index - 1));
 
     if (indexPointer == nullptr) {
-        line *currentLine = nullptr;
+        textLine *currentLine = nullptr;
         currentLine = lineHead;
 
         for (int i = 1; i < lineNumber; i++) {
@@ -66,7 +66,7 @@ void internalInsert(line *lineHead, start *newStringFirst, int lineNumber, int i
                 break;
             }
 
-            currentLine = currentLine->next;
+            currentLine = dynamic_cast<textLine *>(currentLine->next);
         }
 
         currentLine->content = newStringFirst;

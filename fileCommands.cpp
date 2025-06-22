@@ -16,13 +16,13 @@ char * getFilePath(char *filePath) {
     return filePath;
 }
 
-void clearHeap(line *lineHead) {
-    line *previousLine = nullptr;
+void clearHeap(textLine *lineHead) {
+    textLine *previousLine = nullptr;
     while (lineHead != nullptr) {
         deleteString(lineHead->content);
 
         previousLine = lineHead;
-        lineHead = lineHead->next;
+        lineHead = dynamic_cast<textLine *>(lineHead->next);
 
         delete previousLine;
     }
@@ -42,7 +42,7 @@ int TextEditor::saveToFile() {
         return 1;
     }
 
-    line *currentLine = nullptr;
+    textLine *currentLine = nullptr;
     currentLine = lineHead;
 
     start *currentChar = nullptr;
@@ -56,7 +56,7 @@ int TextEditor::saveToFile() {
         }
 
         fputs("\n", file);
-        currentLine = currentLine->next;
+        currentLine = dynamic_cast<textLine *>(currentLine->next);
     }
 
     fclose(file);
@@ -66,7 +66,7 @@ int TextEditor::saveToFile() {
     return 0;
 }
 
-line * loadFromFile(line *lineHead) {
+textLine * loadFromFile(textLine *lineHead) {
     FILE* file = nullptr;
 
     char fileContent[100];
@@ -84,11 +84,11 @@ line * loadFromFile(line *lineHead) {
 
     clearHeap(lineHead);
 
-    lineHead = new line;
+    lineHead = new textLine;
     lineHead->content = nullptr;
     lineHead->next = nullptr;
 
-    line *currentLine = nullptr;
+    textLine *currentLine = nullptr;
     currentLine = lineHead;
 
     while (fgets(fileContent, 100, file)) {
@@ -98,8 +98,8 @@ line * loadFromFile(line *lineHead) {
 
         for (int i = 0; (fileContent[i] != '\0') && (i < 100); i++) {
             if (fileContent[i] == '\n') {
-                currentLine->next = new line;
-                currentLine = currentLine->next;
+                currentLine->next = new textLine;
+                currentLine = dynamic_cast<textLine *>(currentLine->next);
 
                 currentLine->content = nullptr;
                 currentLine->next = nullptr;

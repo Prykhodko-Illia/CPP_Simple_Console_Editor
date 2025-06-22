@@ -8,7 +8,7 @@
 
 class TextEditor {
 private:
-    line *lineHead = nullptr;
+    textLine *lineHead = nullptr;
     std::stack<command *> undoStack;
     std::stack<command *> redoStack;
     start *copyBuffer = nullptr;
@@ -19,7 +19,7 @@ private:
 
 public:
     TextEditor() {
-        lineHead = new line;
+        lineHead = new textLine;
 
         lineHead->content = nullptr;
         lineHead->next = nullptr;

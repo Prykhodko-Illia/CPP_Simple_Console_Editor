@@ -1,11 +1,11 @@
 ﻿#include "TextEditor.h"
 
-void undoDeleteLine(line *lineHead) {
-    line *temp = lineHead;
-    line *previous = nullptr;
+void undoDeleteLine(textLine *lineHead) {
+    textLine *temp = lineHead;
+    textLine *previous = nullptr;
     while (temp->next != nullptr) {
         previous = temp;
-        temp = temp->next;
+        temp = dynamic_cast<textLine *>(temp->next);
     }
 
     if (previous != nullptr) previous->next = nullptr;
@@ -13,12 +13,12 @@ void undoDeleteLine(line *lineHead) {
     delete temp;
 }
 
-void undoAppendLine(line *lineHead, command *currentCommand) {
+void undoAppendLine(textLine *lineHead, command *currentCommand) {
     int lineIdx = 1, charIdx = 0;
 
-    line *lastLine = lineHead;
+    textLine *lastLine = lineHead;
     while (lastLine->next != nullptr) {
-        lastLine = lastLine->next;
+        lastLine = dynamic_cast<textLine *>(lastLine->next);
         lineIdx++;
     }
 
@@ -32,15 +32,15 @@ void undoAppendLine(line *lineHead, command *currentCommand) {
     internalDelete(lineHead, nullptr, lineIdx, charIdx, currentCommand->size);
 }
 
-void undoInsert(line *lineHead, command *currentCommand) {
+void undoInsert(textLine *lineHead, command *currentCommand) {
     internalDelete(lineHead, nullptr, currentCommand->lineNum, currentCommand->index, currentCommand->size);
 }
 
-void undoDelete(line *lineHead, command *currentCommand) {
+void undoDelete(textLine *lineHead, command *currentCommand) {
     internalInsert(lineHead, currentCommand->ptr, currentCommand->lineNum, currentCommand->index);
 }
 
-void undoInsertReplacement(line *lineHead, command *currentCommand) {
+void undoInsertReplacement(textLine *lineHead, command *currentCommand) {
     command *temp = new command;
     internalDelete(lineHead, temp, currentCommand->lineNum, currentCommand->index, currentCommand->size);
     internalInsert(lineHead, currentCommand->ptr, currentCommand->lineNum, currentCommand->index);

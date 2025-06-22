@@ -50,7 +50,7 @@ void printString(start *head) {
 }
 
 void TextEditor::printAll() {
-    line *temporary = nullptr;
+    textLine *temporary = nullptr;
     temporary = lineHead;
 
     while ((temporary)->next != nullptr) {
@@ -59,7 +59,7 @@ void TextEditor::printAll() {
         } else {
             std::cout  << std::endl;;
         }
-        temporary = temporary->next;
+        temporary = dynamic_cast<textLine *>(temporary->next);
     }
 
     if (temporary->content != nullptr) {

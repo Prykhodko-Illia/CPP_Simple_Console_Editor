@@ -51,9 +51,9 @@ int getSize(start *head) {
     return size;
 }
 
-void internalAppend(line *lineHead, start *newText) {
-    line * lastLine = nullptr;
-    lastLine = getLastLine(lineHead);
+void internalAppend(textLine *lineHead, start *newText) {
+    textLine * lastLine = nullptr;
+    lastLine = dynamic_cast<textLine *>(getLastLine(lineHead));
 
     start *lastChar = nullptr;
 
@@ -89,25 +89,25 @@ void TextEditor::append() {
     std::cout << std::endl << "Successfully added" << std::endl;
 }
 
-void internalNewLine(line *lineHead) {
-    line *newLine = nullptr;
-    newLine = new line;
+void internalNewLine(textLine *lineHead) {
+    textLine *newLine = nullptr;
+    newLine = new textLine;
     newLine->content = nullptr;
     newLine->next = nullptr;
 
     getLastLine(lineHead)->next = newLine;
 }
 
-void internalNewCursorLine(line *lineHead, int lineIdx) {
-    line *newLine = nullptr;
-    newLine = new line;
+void internalNewCursorLine(textLine *lineHead, int lineIdx) {
+    textLine *newLine = nullptr;
+    newLine = new textLine;
     newLine->content = nullptr;
     newLine->next = nullptr;
 
-    line *current = lineHead;
+    textLine *current = lineHead;
     int i = 1;
     while (current->next != nullptr && i < lineIdx) {
-        current = current->next;
+        current = dynamic_cast<textLine *>(current->next);
         i++;
     }
 

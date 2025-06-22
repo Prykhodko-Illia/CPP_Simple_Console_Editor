@@ -26,7 +26,7 @@ void TextEditor::search() {
     std::string textForSearch;
     std::cin >> textForSearch;
 
-    line *currentLine = nullptr;
+    textLine *currentLine = nullptr;
     currentLine = lineHead;
 
     int lineCounter = 0;
@@ -38,7 +38,7 @@ void TextEditor::search() {
         lineCounter++;
 
         if (currentLine->content == nullptr) {
-            currentLine = currentLine->next;
+            currentLine = dynamic_cast<textLine *>(currentLine->next);
             continue;
         }
 
@@ -65,6 +65,6 @@ void TextEditor::search() {
         }
 
         if (currentLine->next == nullptr) break;
-        currentLine = currentLine->next;
+        currentLine = dynamic_cast<textLine *>(currentLine->next);
     }
 }

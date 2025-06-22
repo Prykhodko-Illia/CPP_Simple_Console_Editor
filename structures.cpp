@@ -4,8 +4,22 @@
 };
 
 struct line {
+    line *next = nullptr;
+    virtual ~line() {};
+};
+
+struct textLine final : line {
     start *content;
-    line *next;
+};
+
+struct infoLine final : line {
+    start *name, *surname;
+    start *email;
+};
+
+struct checkLine final : line {
+    start *context;
+    bool status = false;
 };
 
 struct command {

@@ -37,7 +37,7 @@ void TextInformation::paste() {
     internalInsert(lineHead, copyBuffer, cursorLine, cursorChar);
     cursorChar += size;
 
-    undoStack.push(cmd);
+    // undoStack.push(cmd);
 }
 
 

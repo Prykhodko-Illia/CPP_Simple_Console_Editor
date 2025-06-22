@@ -27,4 +27,9 @@ add_executable(Console_Editor_Upgraded main.cpp
         Classes/TextInformation/set_cursor_text.cpp
         Classes/TextInformation/delete_text.cpp
         Classes/TextInformation/cut_copy_paste_text.cpp
-        Classes/TextInformation/print_text.cpp)
+        Classes/TextInformation/print_text.cpp
+        GeneralCommands/check_box_scope.cpp
+        GeneralCommands/text_information_scope.cpp
+        GeneralCommands/contact_information_scope.cpp
+        Classes/TextInformation/print_help_text.cpp
+        scopes.h)

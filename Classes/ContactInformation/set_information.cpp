@@ -3,14 +3,7 @@
 void setInField(infoLine *line, const std::string &fieldName) {
     std::cout << "Write " << fieldName << " to set in: " << std::endl;
 
-    start *value;
-
-    {
-        std::string input;
-        std::cin >> input;
-
-        value = convertStringToLinkedList(input, input.length());
-    }
+    start *value = convertStringToLinkedList(getInput(), 32);
 
     if (fieldName == "name") line->name = value;
     if (fieldName == "surname") line->surname = value;

@@ -9,6 +9,7 @@ line * getLine(line *, int);
 textLine * loadFromFile(textLine *);
 
 std::string getInput();
+std::string getCommand();
 
 start * convertStringToLinkedList(const std::string &, int);
 start * getCharPointerByIndexes(textLine *, int, int);

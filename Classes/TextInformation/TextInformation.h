@@ -18,6 +18,8 @@ public:
         lineHead->next = nullptr;
     }
 
+    static void printHelpInfo();
+
     void append();
     void newLine();
 

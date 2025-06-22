@@ -59,6 +59,10 @@ void infoLineClearing(infoLine *linePointer, bool nextFlag) {
     }
 }
 
+void printInfoLine(infoLine *line) {
+    std::cout << "Contact - " << line->name << " " << line->surname << ", E-mail: " << line->email << std::endl;
+}
+
 class ContactInformation {
 private:
     infoLine *infoLineHead;
@@ -135,7 +139,12 @@ public:
     }
 
     void PrintInfo() const {
-        std::cout << "Contact - " << infoLineHead->name << " " << infoLineHead->surname << ", E-mail: " << infoLineHead->email << std::endl;
+        infoLine *temp = infoLineHead;
+
+        while (temp != nullptr) {
+            printInfoLine(temp);
+            temp = dynamic_cast<infoLine *>(temp->next);
+        }
     }
 
     ~ContactInformation() {

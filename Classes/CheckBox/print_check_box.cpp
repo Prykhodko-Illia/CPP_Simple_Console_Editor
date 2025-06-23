@@ -5,7 +5,8 @@ void printCheckLine(checkLine *line) {
     if (line->status == true) std::cout << "[ x ]";
 
     std::cout << " ";
-    printString(line->context);
+    if (line->context != nullptr) printString(line->context);
+    std::cout << std::endl;
 }
 
 void CheckBox::printContent() {

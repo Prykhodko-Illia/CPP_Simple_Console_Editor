@@ -27,6 +27,10 @@ public:
 
     void printContent() override;
 
+    infoLine * getLineHead() {
+        return infoLineHead;
+    }
+
     ~ContactInformation() {
         // write implementation
         delete infoLineHead;

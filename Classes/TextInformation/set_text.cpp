@@ -1,4 +1,4 @@
-﻿#include "TextInformation.h";
+﻿#include "TextInformation.h"
 
 void internalAppend(textLine *lineHead, start *newText) {
     textLine * lastLine = nullptr;

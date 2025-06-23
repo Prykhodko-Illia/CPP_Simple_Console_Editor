@@ -40,6 +40,10 @@ public:
 
     void printContent() override;
 
+    textLine * getLineHead() {
+        return lineHead;
+    }
+
     ~TextInformation() {
         clearHeap(lineHead);
     }

@@ -25,6 +25,18 @@ public:
 
     void printAll() const;
 
+    void encrypt() {
+        const int key = getNumber("Write encryption key");
+
+        CaesarCipher::encrypt(frames, key);
+    }
+
+    void decrypt() {
+        const int key = getNumber("Write encryption key");
+
+        CaesarCipher::encrypt(frames, -key);
+    }
+
     // int saveToFile();
     // void load () {
     //     lineHead = loadFromFile(lineHead);

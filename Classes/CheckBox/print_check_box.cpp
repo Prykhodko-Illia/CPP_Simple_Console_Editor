@@ -1,10 +1,11 @@
 ﻿#include "CheckBox.h"
 
 void printCheckLine(checkLine *line) {
-    if (line->status == true) std::cout << "[   ]";
-    if (line->status == false) std::cout << "[ x ]";
+    if (line->status == false) std::cout << "[   ]";
+    if (line->status == true) std::cout << "[ x ]";
 
-    std::cout << " " << line->context;
+    std::cout << " ";
+    printString(line->context);
 }
 
 void CheckBox::printCheckBox() {

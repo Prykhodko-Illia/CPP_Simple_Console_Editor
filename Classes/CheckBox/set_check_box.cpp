@@ -20,10 +20,11 @@ void CheckBox::setCheckBoxStatus() {
 }
 
 void CheckBox::newCheckLine() {
-    checkLineHead->next = new checkLine;
+    checkLine *lastLine = dynamic_cast<checkLine *>(getLastLine(checkLineHead));
+    lastLine->next = new checkLine;
 
     {
-        auto *newLine = dynamic_cast<checkLine *>(checkLineHead->next);
+        auto *newLine = dynamic_cast<checkLine *>(lastLine->next);
         start * input = convertStringToLinkedList(getInput(), 32);
         newLine->context = input;
     }

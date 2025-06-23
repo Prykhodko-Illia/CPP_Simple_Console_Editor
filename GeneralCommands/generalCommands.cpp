@@ -8,12 +8,12 @@ std::string getCommand() {
     return command;
 }
 
-line * getLine(line *infoLineHead, int lineNum) {
-    int i = 0;
+line * getLine(line *thisLine, int lineNum) {
+    int i = 1;
 
-    line *temp = infoLineHead;
+    line *temp = thisLine;
     while (temp->next != nullptr && i < lineNum) {
-        temp = dynamic_cast<infoLine *>(temp->next);
+        temp = temp->next;
         ++i;
     }
 

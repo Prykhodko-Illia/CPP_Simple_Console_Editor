@@ -32,4 +32,6 @@ add_executable(Console_Editor_Upgraded main.cpp
         Scopes/contact_information_scope.cpp
         Classes/TextInformation/print_help_text.cpp
         Scopes/scopes.h
-        Classes/ContactInformation/print_help_information.cpp)
+        Classes/ContactInformation/print_help_information.cpp
+        Classes/CheckBox/print_help_check_box.cpp
+)

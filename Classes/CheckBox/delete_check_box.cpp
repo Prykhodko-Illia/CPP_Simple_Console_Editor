@@ -22,13 +22,13 @@ void CheckBox::deleteCheckLine() {
             --linesCount;
         }
     } else if (line >= linesCount) {
-        auto *previousLine = dynamic_cast<checkLine *>(getLine(checkLineHead, linesCount - 1));
+        auto *previousLine = dynamic_cast<checkLine *>(getLine(checkLineHead, linesCount - 2));
         deleteCheckLineInfo(dynamic_cast<checkLine *>(previousLine->next), true);
 
         previousLine->next = nullptr;
         --linesCount;
     } else {
-        auto *previousLine = dynamic_cast<checkLine *>(getLine(checkLineHead, linesCount - 1));
+        auto *previousLine = dynamic_cast<checkLine *>(getLine(checkLineHead, linesCount - 2));
         auto *lineToDelete = dynamic_cast<checkLine *>(previousLine->next);
 
         deleteCheckLineInfo(lineToDelete, false);

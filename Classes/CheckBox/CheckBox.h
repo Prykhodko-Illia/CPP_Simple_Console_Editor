@@ -17,6 +17,8 @@ public:
         linesCount = 1;
     }
 
+    static void printHelpInfo();
+
     void setCheckBoxInfo();
     void setCheckBoxStatus();
     void newCheckLine();

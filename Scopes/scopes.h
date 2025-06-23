@@ -3,5 +3,6 @@
 
 int textInformationScope();
 int contactInformationScope();
+int checkBoxScope();
 
 #endif //SCOPES_H

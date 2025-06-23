@@ -14,9 +14,7 @@ private:
     std::vector<Frame *> frames;
 
 public:
-    ConsoleEditor() {
-
-    }
+    ConsoleEditor() = default;
     static void printHelpInfo();
 
     void createNewFrame();
@@ -25,17 +23,8 @@ public:
 
     void printAll() const;
 
-    void encrypt() {
-        const int key = getNumber("Write encryption key");
-
-        CaesarCipher::encrypt(frames, key);
-    }
-
-    void decrypt() {
-        const int key = getNumber("Write encryption key");
-
-        CaesarCipher::encrypt(frames, -key);
-    }
+    void encryptAll();
+    void decryptAll();
 
     // int saveToFile();
     // void load () {

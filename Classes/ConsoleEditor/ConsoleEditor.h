@@ -14,9 +14,7 @@ private:
     std::vector<Frame *> frames;
 
 public:
-    ConsoleEditor() {
-
-    }
+    ConsoleEditor() = default;
     static void printHelpInfo();
 
     void createNewFrame();
@@ -24,6 +22,9 @@ public:
     void deleteFrame();
 
     void printAll() const;
+
+    void encryptAll();
+    void decryptAll();
 
     // int saveToFile();
     // void load () {

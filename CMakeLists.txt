@@ -42,5 +42,5 @@ add_executable(Console_Editor_Upgraded main.cpp
         Classes/ConsoleEditor/edit_frame_console_editor.cpp
         Classes/ConsoleEditor/delete_frame_console_editor.cpp
         Classes/ConsoleEditor/print_all_console_editor.cpp
-        Classes/CaesarCipher/CeasarCipher.h
+        Classes/ConsoleEditor/encrypt_console_editor.cpp
 )

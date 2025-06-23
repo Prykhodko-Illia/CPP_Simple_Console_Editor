@@ -1,4 +1,4 @@
-﻿#include "TextInformation.h";
+﻿#include "TextInformation.h"
 
 start * getCharPointerByIndexes(textLine *head, int lineNumber, int charNumber) {
     textLine *currentLine = nullptr;

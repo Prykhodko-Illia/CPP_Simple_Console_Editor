@@ -3,6 +3,8 @@
 void TextInformation::printContent() {
     textLine *temp = lineHead;
 
+    std::cout << "Text: " << std::endl;
+
     while (temp != nullptr) {
         if (temp->content != nullptr) {
             printString(temp->content);

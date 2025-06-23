@@ -6,11 +6,9 @@ void printCheckLine(checkLine *line) {
 
     std::cout << " ";
     if (line->context != nullptr) printString(line->context);
-    std::cout << std::endl;
 }
 
 void CheckBox::printContent() {
-    std::cout << "Text: ";
     checkLine *temp = checkLineHead;
 
     while (temp != nullptr) {

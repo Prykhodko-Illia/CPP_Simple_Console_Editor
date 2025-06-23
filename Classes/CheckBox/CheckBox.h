@@ -29,6 +29,10 @@ public:
 
     void printContent() override;
 
+    checkLine * getLineHead() {
+        return checkLineHead;
+    }
+
     ~CheckBox() {
         //write full implementation
         delete checkLineHead;

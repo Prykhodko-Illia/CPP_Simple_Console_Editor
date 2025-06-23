@@ -24,6 +24,12 @@ int consoleEditorScope() {
             case '4':
                 console_editor.printAll();
                 break;
+            case '5':
+                console_editor.encryptAll();
+                break;
+            case '6':
+                console_editor.decryptAll();
+                break;
             case 'h':
                 if (command[1] == 'e' & command[2] == 'l' & command[3] == 'p') ConsoleEditor::printHelpInfo();
                 break;

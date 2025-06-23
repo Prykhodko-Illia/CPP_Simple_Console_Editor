@@ -1,6 +1,6 @@
 ﻿#include "TextInformation.h"
 
-void TextInformation::printText() {
+void TextInformation::printContent() {
     textLine *temp = lineHead;
 
     while (temp != nullptr) {

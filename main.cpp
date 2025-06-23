@@ -1,10 +1,6 @@
 ﻿#include "Scopes/scopes.h"
 
 int main() {
-    int i = 0;
-    while (true) {
-        contactInformationScope();
-    }
-
+    consoleEditorScope();
     return 0;
 }

@@ -1,6 +1,9 @@
 ﻿#include "scopes.h"
+#include "../Classes/ConsoleEditor/ConsoleEditor.h"
 
-int contactInformationScope(ContactInformation &contact_information) {
+int consoleEditorScope() {
+    ConsoleEditor console_editor = ConsoleEditor();
+
     while (true) {
         std::string command = getCommand();
 
@@ -10,19 +13,19 @@ int contactInformationScope(ContactInformation &contact_information) {
 
         switch(command[0]) {
             case '1':
-                contact_information.setInfo();
+                console_editor.createNewFrame();
                 break;
             case '2':
-                contact_information.editInfo();
+                console_editor.deleteFrame();
                 break;
             case '3':
-                contact_information.newLine();
+                console_editor.editFrame();
                 break;
             case '4':
-                contact_information.deleteInfo();
+                console_editor.printAll();
                 break;
             case 'h':
-                if (command[1] == 'e' & command[2] == 'l' & command[3] == 'p') ContactInformation::printHelpInfo();
+                if (command[1] == 'e' & command[2] == 'l' & command[3] == 'p') ConsoleEditor::printHelpInfo();
                 break;
             default:
                 std::cout << "The command is not implemented" << std::endl;
@@ -31,4 +34,4 @@ int contactInformationScope(ContactInformation &contact_information) {
     }
 
     return 0;
-};
+}

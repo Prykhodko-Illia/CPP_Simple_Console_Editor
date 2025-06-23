@@ -2,8 +2,9 @@
 #define CONTACTINFORMATION_H
 
 #include "../../GeneralCommands/library.h"
+#include "../Frame/Frame.h"
 
-class ContactInformation {
+class ContactInformation : public Frame {
 private:
     infoLine *infoLineHead;
     int linesCount;
@@ -13,6 +14,7 @@ public:
         infoLineHead = new infoLine;
         infoLineInitialization(infoLineHead, true);
         linesCount = 1;
+        scopeId = 2;
     }
 
     static void printHelpInfo();
@@ -23,7 +25,7 @@ public:
 
     void deleteInfo();
 
-    void printInfo() const;
+    void printContent() override;
 
     ~ContactInformation() {
         // write implementation

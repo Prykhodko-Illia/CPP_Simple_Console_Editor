@@ -1,9 +1,6 @@
-﻿#include "../Classes/CheckBox/CheckBox.h"
-#include "scopes.h"
+﻿#include "scopes.h"
 
-int checkBoxScope() {
-    CheckBox check_box = CheckBox();
-
+int checkBoxScope(CheckBox &check_box) {
     while (true) {
         std::string command = getCommand();
 
@@ -23,9 +20,6 @@ int checkBoxScope() {
                 break;
             case '4':
                 check_box.deleteCheckLine();
-                break;
-            case '5':
-                check_box.printCheckBox();
                 break;
             case 'h':
                 if (command[1] == 'e' & command[2] == 'l' & command[3] == 'p') CheckBox::printHelpInfo();

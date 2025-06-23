@@ -34,4 +34,12 @@ add_executable(Console_Editor_Upgraded main.cpp
         Scopes/scopes.h
         Classes/ContactInformation/print_help_information.cpp
         Classes/CheckBox/print_help_check_box.cpp
+        Classes/Frame/Frame.h
+        Classes/classes.h
+        Scopes/main_scope.cpp
+        Classes/ConsoleEditor/print_help_console_editor.cpp
+        Classes/ConsoleEditor/create_new_frame_console_editor.cpp
+        Classes/ConsoleEditor/edit_frame_console_editor.cpp
+        Classes/ConsoleEditor/delete_frame_console_editor.cpp
+        Classes/ConsoleEditor/print_all_console_editor.cpp
 )

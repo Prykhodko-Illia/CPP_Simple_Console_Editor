@@ -2,8 +2,9 @@
 #define CHECKBOX_H
 
 #include "../../GeneralCommands/library.h"
+#include "../Frame/Frame.h"
 
-class CheckBox {
+class CheckBox : public Frame {
 private:
     checkLine *checkLineHead = nullptr;
     int linesCount;
@@ -15,6 +16,7 @@ public:
         checkLineHead->next = nullptr;
 
         linesCount = 1;
+        scopeId = 3;
     }
 
     static void printHelpInfo();
@@ -25,7 +27,7 @@ public:
 
     void deleteCheckLine();
 
-    void printCheckBox();
+    void printContent() override;
 
     ~CheckBox() {
         //write full implementation

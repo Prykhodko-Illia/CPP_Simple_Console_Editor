@@ -8,7 +8,7 @@ void printCheckLine(checkLine *line) {
     printString(line->context);
 }
 
-void CheckBox::printCheckBox() {
+void CheckBox::printContent() {
     checkLine *temp = checkLineHead;
 
     while (temp != nullptr) {

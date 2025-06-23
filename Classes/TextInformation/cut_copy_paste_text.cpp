@@ -26,13 +26,13 @@ void TextInformation::paste() {
     // std::cin >> lineIdx >> charIdx;
 
     int size = getSize(copyBuffer);
-
-    command* cmd = new command;
-    cmd->cmdNumber = 12;
-    cmd->lineNum = cursorLine;
-    cmd->index = cursorChar;
-    cmd->size = size;
-    cmd->ptr = copyBuffer;
+    //
+    // command* cmd = new command;
+    // cmd->cmdNumber = 12;
+    // cmd->lineNum = cursorLine;
+    // cmd->index = cursorChar;
+    // cmd->size = size;
+    // cmd->ptr = copyBuffer;
 
     internalInsert(lineHead, copyBuffer, cursorLine, cursorChar);
     cursorChar += size;

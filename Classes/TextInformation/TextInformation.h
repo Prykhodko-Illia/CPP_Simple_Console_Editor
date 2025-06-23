@@ -2,8 +2,9 @@
 #define TEXTINFORMATION_H
 
 #include "../../GeneralCommands/library.h"
+#include "../Frame/Frame.h"
 
-class TextInformation {
+class TextInformation : public Frame {
 private:
     textLine *lineHead = nullptr;
     int cursorLine = 1;
@@ -16,6 +17,8 @@ public:
 
         lineHead->content = nullptr;
         lineHead->next = nullptr;
+
+        scopeId = 1;
     }
 
     static void printHelpInfo();
@@ -35,7 +38,7 @@ public:
     void paste();
     void copy();
 
-    void printText();
+    void printContent() override;
 
     ~TextInformation() {
         clearHeap(lineHead);

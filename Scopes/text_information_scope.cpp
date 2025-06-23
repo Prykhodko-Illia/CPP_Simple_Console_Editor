@@ -1,9 +1,6 @@
-﻿#include "../Classes/TextInformation/TextInformation.h"
-#include "scopes.h"
+﻿#include "scopes.h"
 
-int textInformationScope() {
-     TextInformation text_information = TextInformation();
-
+int textInformationScope(TextInformation &text_information) {
      while (true) {
          std::string command = getCommand();
 

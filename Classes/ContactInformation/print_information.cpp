@@ -16,7 +16,7 @@ void printInfoLine(infoLine *line) {
     std::cout << std::endl;
 }
 
-void ContactInformation::printInfo() const{
+void ContactInformation::printContent() {
     infoLine *temp = infoLineHead;
 
     while (temp != nullptr) {

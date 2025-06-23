@@ -25,8 +25,6 @@ public:
 
     void printAll() const;
 
-    // static void printHelpInfo();
-    //
     // int saveToFile();
     // void load () {
     //     lineHead = loadFromFile(lineHead);

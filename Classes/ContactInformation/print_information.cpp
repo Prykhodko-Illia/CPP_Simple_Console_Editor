@@ -23,4 +23,6 @@ void ContactInformation::printContent() {
         printInfoLine(temp);
         temp = dynamic_cast<infoLine *>(temp->next);
     }
+
+    std::cout << std::endl;
 }

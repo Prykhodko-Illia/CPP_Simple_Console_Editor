@@ -10,10 +10,13 @@ void printCheckLine(checkLine *line) {
 }
 
 void CheckBox::printContent() {
+    std::cout << "Text: ";
     checkLine *temp = checkLineHead;
 
     while (temp != nullptr) {
         printCheckLine(temp);
         temp = dynamic_cast<checkLine *>(temp->next);
     }
+
+    std::cout << std::endl;
 }

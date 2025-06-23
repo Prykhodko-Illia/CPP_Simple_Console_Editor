@@ -12,4 +12,6 @@ void TextInformation::printContent() {
 
         temp = dynamic_cast<textLine *>(temp->next);
     }
+
+    std::cout << std::endl;
 }

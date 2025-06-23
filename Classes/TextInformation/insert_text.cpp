@@ -1,9 +1,7 @@
-﻿#include <iostream>
-#include "TextEditor.h"
-#include "library.h"
+﻿#include "TextInformation.h";
 
-start * getCharPointerByIndexes(line *head, int lineNumber, int charNumber) {
-    line *currentLine = nullptr;
+start * getCharPointerByIndexes(textLine *head, int lineNumber, int charNumber) {
+    textLine *currentLine = nullptr;
     currentLine = head;
 
     for (int i = 1; i < lineNumber; i++) {
@@ -11,7 +9,7 @@ start * getCharPointerByIndexes(line *head, int lineNumber, int charNumber) {
             break;
         }
 
-        currentLine = currentLine->next;
+        currentLine = dynamic_cast<textLine *>(currentLine->next);
     }
 
     start *currentChar = nullptr;
@@ -30,9 +28,9 @@ start * getCharPointerByIndexes(line *head, int lineNumber, int charNumber) {
     return currentChar;
 }
 
-void internalInsert(line *lineHead, start *newStringFirst, int lineNumber, int index) {
+void internalInsert(textLine *lineHead, start *newStringFirst, int lineNumber, int index) {
     if (index == 0) {
-        line *currentLine = nullptr;
+        textLine *currentLine = nullptr;
         currentLine = lineHead;
 
         for (int i = 1; i < lineNumber; i++) {
@@ -40,7 +38,7 @@ void internalInsert(line *lineHead, start *newStringFirst, int lineNumber, int i
                 break;
             }
 
-            currentLine = currentLine->next;
+            currentLine = dynamic_cast<textLine *>(currentLine->next);
         }
 
         if (currentLine->content == nullptr) currentLine->content = newStringFirst;
@@ -58,7 +56,7 @@ void internalInsert(line *lineHead, start *newStringFirst, int lineNumber, int i
     start *indexPointer = getCharPointerByIndexes(lineHead, lineNumber, (index - 1));
 
     if (indexPointer == nullptr) {
-        line *currentLine = nullptr;
+        textLine *currentLine = nullptr;
         currentLine = lineHead;
 
         for (int i = 1; i < lineNumber; i++) {
@@ -66,7 +64,7 @@ void internalInsert(line *lineHead, start *newStringFirst, int lineNumber, int i
                 break;
             }
 
-            currentLine = currentLine->next;
+            currentLine = dynamic_cast<textLine *>(currentLine->next);
         }
 
         currentLine->content = newStringFirst;
@@ -83,26 +81,49 @@ void internalInsert(line *lineHead, start *newStringFirst, int lineNumber, int i
     }
 };
 
-void TextEditor::insert() {
+void TextInformation::insert() {
     std::cout << "Choose line and index:";
     int lineNumber = 0, index = 0;
 
     std::cin >> lineNumber >> index;
 
-    command* cmd = new command;
-    cmd->cmdNumber = 6;
-    cmd->lineNum = lineNumber;
-    cmd->index = index + 1;
+    // command* cmd = new command;
+    // cmd->cmdNumber = 6;
+    // cmd->lineNum = lineNumber;
+    // cmd->index = index + 1;
 
     std::string insertText = getInput(); //TODO: customize user input
     start *newStringFirst = nullptr;
 
     newStringFirst = convertStringToLinkedList(insertText, 32);
 
-    cmd->size = getSize(newStringFirst);
-    cmd->ptr = newStringFirst;
+    // cmd->size = getSize(newStringFirst);
+    // cmd->ptr = newStringFirst;
 
     internalInsert(lineHead, newStringFirst, lineNumber, index);
 
-    undoStack.push(cmd);
+    // undoStack.push(cmd);
+}
+
+void TextInformation::insert_replacement() {
+    // std::cout << "Choose line and index" << std::endl;
+    //
+    // int lineIdx = 0, charIdx = 0;
+    // std::cin >> lineIdx >> charIdx;
+    // std::cout << std::endl;
+
+    std::string input = getInput();
+    start *first = convertStringToLinkedList(input, 32);
+    int size = getSize(first);
+
+    // command* cmd = new command;
+    // cmd->cmdNumber = 14;
+    // cmd->lineNum = cursorLine;
+    // cmd->index = cursorChar;
+    // cmd->size = size;
+
+    internalDelete(lineHead, nullptr, cursorLine, cursorChar, size);
+    internalInsert(lineHead, first, cursorLine, cursorChar);
+
+    // undoStack.push(cmd);
 }

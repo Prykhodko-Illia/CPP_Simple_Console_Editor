@@ -1,5 +1,4 @@
-﻿#include <iostream>
-#include "TextEditor.h"
+﻿#include "TextInformation.h"
 
 int searchInLine(start *head, std::string word) {
     start *currentChar = nullptr;
@@ -20,13 +19,13 @@ int searchInLine(start *head, std::string word) {
     }
 }
 
-void TextEditor::search() {
+void TextInformation::search() {
     std::cout << "Enter text to search:" << std::endl;
 
     std::string textForSearch;
     std::cin >> textForSearch;
 
-    line *currentLine = nullptr;
+    textLine *currentLine = nullptr;
     currentLine = lineHead;
 
     int lineCounter = 0;
@@ -38,7 +37,7 @@ void TextEditor::search() {
         lineCounter++;
 
         if (currentLine->content == nullptr) {
-            currentLine = currentLine->next;
+            currentLine = dynamic_cast<textLine *>(currentLine->next);
             continue;
         }
 
@@ -65,6 +64,6 @@ void TextEditor::search() {
         }
 
         if (currentLine->next == nullptr) break;
-        currentLine = currentLine->next;
+        currentLine = dynamic_cast<textLine *>(currentLine->next);
     }
 }

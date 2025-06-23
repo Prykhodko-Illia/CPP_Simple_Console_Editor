@@ -1,16 +1,6 @@
-﻿#include "TextEditor.h"
+﻿#include "TextInformation.h"
 
-void deleteString(start *first) {
-    start *currentChar = first, *previousChar = nullptr;
-
-    while (currentChar != nullptr) {
-        previousChar = currentChar;
-        currentChar = currentChar->ptr;
-        delete previousChar;
-    }
-}
-
-void TextEditor::cut() {
+void TextInformation::cut() {
     // std::cout << "Choose line and index and number of symbols:" << std::endl;
     //
     // int lineIdx, charIdx, size;
@@ -29,29 +19,29 @@ void TextEditor::cut() {
     delete cmd;
 }
 
-void TextEditor::paste() {
+void TextInformation::paste() {
     // std::cout << "Choose line and index" << std::endl;
     //
     // int lineIdx, charIdx;
     // std::cin >> lineIdx >> charIdx;
 
     int size = getSize(copyBuffer);
-
-    command* cmd = new command;
-    cmd->cmdNumber = 12;
-    cmd->lineNum = cursorLine;
-    cmd->index = cursorChar;
-    cmd->size = size;
-    cmd->ptr = copyBuffer;
+    //
+    // command* cmd = new command;
+    // cmd->cmdNumber = 12;
+    // cmd->lineNum = cursorLine;
+    // cmd->index = cursorChar;
+    // cmd->size = size;
+    // cmd->ptr = copyBuffer;
 
     internalInsert(lineHead, copyBuffer, cursorLine, cursorChar);
     cursorChar += size;
 
-    undoStack.push(cmd);
+    // undoStack.push(cmd);
 }
 
 
-void TextEditor::copy() {
+void TextInformation::copy() {
     // std::cout << "Choose line and index and number of symbols:" << std::endl;
     //
     // int lineIdx, charIdx, size, i = 1;

@@ -1,4 +1,4 @@
-﻿#include "../ConsoleEditor/ConsoleEditor.h"
+﻿#include "TextInformation.h"
 
 void undoDeleteLine(textLine *lineHead) {
     textLine *temp = lineHead;

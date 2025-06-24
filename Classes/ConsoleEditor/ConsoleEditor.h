@@ -27,6 +27,8 @@ public:
     void decryptAll();
 
     void undo();
+    void redo();
+
     // int saveToFile();
     // void load () {
     //     lineHead = loadFromFile(lineHead);

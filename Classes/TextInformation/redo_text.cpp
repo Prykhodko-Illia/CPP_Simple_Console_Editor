@@ -1,4 +1,4 @@
-﻿#include "../ConsoleEditor/ConsoleEditor.h"
+﻿#include "TextInformation.h"
 
 void redoAppend(textLine *lineHead, const textCommand *currentCommand) {
     internalAppend(lineHead, currentCommand->content);
@@ -24,35 +24,26 @@ void redoInsertReplacement(textLine *lineHead, textCommand *currentCommand) {
     currentCommand->content = temp->content;
     delete temp;
 }
-//
-// void ConsoleEditor::redo() {
-//     if (redoStack.empty()) {
-//         std::cout << "The stack is empty" << std::endl;
-//         return;
-//     }
-//
-//     textCommand *currentCommand = redoStack.top();
-//     switch (currentCommand->cmdNumber) {
-//         case 1:
-//             redoAppend(lineHead, currentCommand);
-//             break;
-//         case 2:
-//             redoNewLine(lineHead);
-//             break;
-//         case 6:
-//         case 12:
-//             redoInsert(lineHead, currentCommand);
-//             break;
-//         case 8:
-//             redoDelete(lineHead, currentCommand);
-//             break;
-//         case 14:
-//             redoInsertReplacement(lineHead, currentCommand);
-//             break;
-//         default:
-//             return;
-//     }
-//
-//     redoStack.pop();
-//     undoStack.push(currentCommand);
-// }
+
+void TextInformation::redo(TextInformation &frame, textCommand *command) {
+    switch (command->cmdNumber) {
+        case 1:
+            redoAppend(frame.lineHead, command);
+            break;
+        case 2:
+            redoNewLine(frame.lineHead);
+            break;
+        case 6:
+        case 12:
+            redoInsert(frame.lineHead, command);
+            break;
+        case 8:
+            redoDelete(frame.lineHead, command);
+            break;
+        case 14:
+            redoInsertReplacement(frame.lineHead, command);
+            break;
+        default:
+            break;
+    }
+}

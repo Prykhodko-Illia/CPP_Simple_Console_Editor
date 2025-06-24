@@ -48,7 +48,7 @@ void TextInformation::deleteContent(std::stack<command *> &undoStack, int frameN
     cmd->index = cursorChar;
     cmd->size = size;
 
-    internalDelete(lineHead, nullptr, cursorLine, cursorChar, size);
+    internalDelete(lineHead, cmd, cursorLine, cursorChar, size);
 
     undoStack.push(cmd);
 

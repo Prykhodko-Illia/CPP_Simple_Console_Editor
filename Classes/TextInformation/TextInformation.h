@@ -24,6 +24,7 @@ public:
 
     static void printHelpInfo();
     static void undo(TextInformation &frame, textCommand *command);
+    static void redo(TextInformation &frame, textCommand *command);
 
     void append(std::stack<command *> &undoStack, int frameNumber);
     void newLine(std::stack<command *> &undoStack, int frameNumber);

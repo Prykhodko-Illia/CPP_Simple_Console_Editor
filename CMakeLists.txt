@@ -44,4 +44,5 @@ add_executable(Console_Editor_Upgraded main.cpp
         Classes/ConsoleEditor/print_all_console_editor.cpp
         Classes/ConsoleEditor/encrypt_console_editor.cpp
         Classes/ConsoleEditor/undo_console_editor.cpp
+        Classes/ConsoleEditor/redo_console_editor.cpp
 )

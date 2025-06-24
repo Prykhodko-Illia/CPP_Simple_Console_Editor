@@ -1,52 +1,38 @@
 ﻿#include "TextInformation.h"
 
 void TextInformation::cut() {
-    // std::cout << "Choose line and index and number of symbols:" << std::endl;
-    //
-    // int lineIdx, charIdx, size;
-    // std::cin >> lineIdx >> charIdx >> size;
-
     std::cout << "Choose number of symbols to cut" << std::endl;
     int size;
     std::cin >> size;
 
-    command *cmd = new command;
+    auto *cmd = new textCommand;
 
     internalDelete(lineHead, cmd, cursorLine, cursorChar, size);
 
     deleteString(copyBuffer);
-    copyBuffer = cmd->ptr;
+    copyBuffer = cmd->content;
     delete cmd;
 }
 
-void TextInformation::paste() {
-    // std::cout << "Choose line and index" << std::endl;
-    //
-    // int lineIdx, charIdx;
-    // std::cin >> lineIdx >> charIdx;
-
+void TextInformation::paste(std::stack<command *> &undoStack, int frameNumber) {
     int size = getSize(copyBuffer);
-    //
-    // command* cmd = new command;
-    // cmd->cmdNumber = 12;
-    // cmd->lineNum = cursorLine;
-    // cmd->index = cursorChar;
-    // cmd->size = size;
-    // cmd->ptr = copyBuffer;
+
+    auto cmd = new textCommand;
+    cmd->frameNumber = frameNumber;
+    cmd->cmdNumber = 12;
+    cmd->lineNumber = cursorLine;
+    cmd->index = cursorChar;
+    cmd->size = size;
+    cmd->content = copyBuffer;
 
     internalInsert(lineHead, copyBuffer, cursorLine, cursorChar);
     cursorChar += size;
 
-    // undoStack.push(cmd);
+    undoStack.push(cmd);
 }
 
 
 void TextInformation::copy() {
-    // std::cout << "Choose line and index and number of symbols:" << std::endl;
-    //
-    // int lineIdx, charIdx, size, i = 1;
-    // std::cin >> lineIdx >> charIdx >> size;
-
     std::cout << "Choose number of symbols to copy" << std::endl;
     int size, i = 1;
     std::cin >> size;

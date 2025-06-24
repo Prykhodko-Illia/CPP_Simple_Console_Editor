@@ -18,6 +18,7 @@ public:
     }
 
     static void printHelpInfo();
+    // static void undo(ContactInformation &frame, contactCommand *command);
 
     void setInfo();
     void editInfo();

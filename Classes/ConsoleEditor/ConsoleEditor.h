@@ -26,6 +26,7 @@ public:
     void encryptAll();
     void decryptAll();
 
+    void undo();
     // int saveToFile();
     // void load () {
     //     lineHead = loadFromFile(lineHead);
@@ -33,7 +34,7 @@ public:
     //     int cursorChar = 0;
     // }
     //
-    // void undo();
+
     // void redo();
 };
 

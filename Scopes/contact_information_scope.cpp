@@ -1,6 +1,6 @@
 ﻿#include "scopes.h"
 
-int contactInformationScope(ContactInformation &contact_information) {
+int contactInformationScope(ContactInformation &contact_information, const std::stack<command *> &) {
     while (true) {
         std::string command = getCommand();
 

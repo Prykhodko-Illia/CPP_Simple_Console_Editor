@@ -4,10 +4,9 @@ void internalAppend(textLine *lineHead, start *newText) {
     textLine * lastLine = nullptr;
     lastLine = dynamic_cast<textLine *>(getLastLine(lineHead));
 
-    start *lastChar = nullptr;
-
     if (lastLine->content == nullptr)  lastLine->content = newText;
     else {
+        start *lastChar = nullptr;
         lastChar = lastLine->content;
         while (lastChar->ptr != nullptr) {
             lastChar = lastChar->ptr;
@@ -16,7 +15,7 @@ void internalAppend(textLine *lineHead, start *newText) {
     }
 }
 
-void TextInformation::append() {
+void TextInformation::append(std::stack<command *> &undoStack, int frameNumber) {
     std::string input = getInput();
 
     start *newText = nullptr;
@@ -24,12 +23,13 @@ void TextInformation::append() {
 
     int size = getSize(newText);
 
-    // command *cmd = new command;
-    // cmd->cmdNumber = 1;
-    // cmd->ptr = newText;
-    // cmd->size = size;
-    //
-    // undoStack.push(cmd);
+    auto *cmd = new textCommand;
+    cmd->frameNumber = frameNumber;
+    cmd->cmdNumber = 1;
+    cmd->content = newText;
+    cmd->size = size;
+
+    undoStack.push(cmd);
 
     internalInsert(lineHead, newText, cursorLine, cursorChar);
 
@@ -64,14 +64,15 @@ void internalNewCursorLine(textLine *lineHead, int lineIdx) {
     current->next = newLine;
 }
 
-void TextInformation::newLine() {
+void TextInformation::newLine(std::stack<command *> &undoStack, int frameNumber) {
     internalNewCursorLine(lineHead, cursorLine);
     cursorLine++;
     cursorChar = 0;
 
-    // command *cmd = new command;
-    // cmd->cmdNumber = 2;
-    // undoStack.push(cmd);
+    auto *cmd = new textCommand;
+    cmd->frameNumber = frameNumber;
+    cmd->cmdNumber = 2;
+    undoStack.push(cmd);
 
     std::cout << "New line is started" << std::endl;
 }

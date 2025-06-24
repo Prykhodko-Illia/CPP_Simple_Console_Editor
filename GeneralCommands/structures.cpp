@@ -24,8 +24,25 @@ struct checkLine final : line {
 
 struct command {
     int cmdNumber = 0;
-    int lineNum = 0;
+    int frameNumber = 0;
+    int lineNumber = 0;
+
+    virtual ~command() = default;
+};
+
+struct textCommand final : command {
     int index = 0;
     int size = 0;
-    start *ptr = nullptr;
+    start *content = nullptr;
+};
+
+struct contactCommand final : command {
+    start *name = nullptr;
+    start *surname = nullptr;
+    start *email = nullptr;
+};
+
+struct checkBoxCommand final : command {
+    bool statusChanged = false;
+    start *content = nullptr;
 };

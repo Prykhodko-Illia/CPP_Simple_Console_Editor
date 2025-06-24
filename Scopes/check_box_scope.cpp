@@ -1,6 +1,6 @@
 ﻿#include "scopes.h"
 
-int checkBoxScope(CheckBox &check_box) {
+int checkBoxScope(CheckBox &check_box, const std::stack<command *> &undoStack) {
     while (true) {
         std::string command = getCommand();
 

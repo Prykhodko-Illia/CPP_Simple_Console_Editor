@@ -81,49 +81,45 @@ void internalInsert(textLine *lineHead, start *newStringFirst, int lineNumber, i
     }
 };
 
-void TextInformation::insert() {
+void TextInformation::insert(std::stack<command *> &undoStack, int frameNumber) {
     std::cout << "Choose line and index:";
     int lineNumber = 0, index = 0;
 
     std::cin >> lineNumber >> index;
 
-    // command* cmd = new command;
-    // cmd->cmdNumber = 6;
-    // cmd->lineNum = lineNumber;
-    // cmd->index = index + 1;
+    auto cmd = new textCommand;
+    cmd->frameNumber = frameNumber;
+    cmd->cmdNumber = 6;
+    cmd->lineNumber = lineNumber;
+    cmd->index = index + 1;
 
-    std::string insertText = getInput(); //TODO: customize user input
+    std::string insertText = getInput();
     start *newStringFirst = nullptr;
 
     newStringFirst = convertStringToLinkedList(insertText, 32);
 
-    // cmd->size = getSize(newStringFirst);
-    // cmd->ptr = newStringFirst;
+    cmd->size = getSize(newStringFirst);
+    cmd->content = newStringFirst;
 
     internalInsert(lineHead, newStringFirst, lineNumber, index);
 
-    // undoStack.push(cmd);
+    undoStack.push(cmd);
 }
 
-void TextInformation::insert_replacement() {
-    // std::cout << "Choose line and index" << std::endl;
-    //
-    // int lineIdx = 0, charIdx = 0;
-    // std::cin >> lineIdx >> charIdx;
-    // std::cout << std::endl;
-
+void TextInformation::insert_replacement(std::stack<command *> &undoStack, int frameNumber) {
     std::string input = getInput();
     start *first = convertStringToLinkedList(input, 32);
     int size = getSize(first);
 
-    // command* cmd = new command;
-    // cmd->cmdNumber = 14;
-    // cmd->lineNum = cursorLine;
-    // cmd->index = cursorChar;
-    // cmd->size = size;
+    auto cmd = new textCommand;
+    cmd->frameNumber = frameNumber;
+    cmd->cmdNumber = 14;
+    cmd->lineNumber = cursorLine;
+    cmd->index = cursorChar;
+    cmd->size = size;
 
     internalDelete(lineHead, nullptr, cursorLine, cursorChar, size);
     internalInsert(lineHead, first, cursorLine, cursorChar);
 
-    // undoStack.push(cmd);
+    undoStack.push(cmd);
 }

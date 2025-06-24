@@ -24,7 +24,7 @@ void printString(start *, bool = true);
 
 void internalAppend(textLine *, start *);
 void internalNewLine(textLine *);
-void internalDelete(textLine *, command*, int, int, int);
+void internalDelete(textLine *, textCommand*, int, int, int);
 void internalInsert(textLine *, start *, int, int);
 
 

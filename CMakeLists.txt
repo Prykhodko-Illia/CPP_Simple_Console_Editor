@@ -8,8 +8,8 @@ add_executable(Console_Editor_Upgraded main.cpp
         GeneralCommands/structures.cpp
         GeneralCommands/library.h
         Classes/ConsoleEditor/fileCommands.cpp
-        Classes/ConsoleEditor/undo.cpp
-        Classes/ConsoleEditor/redo.cpp
+        Classes/TextInformation/undo_text.cpp
+        Classes/TextInformation/redo_text.cpp
         Classes/ContactInformation/ContactInformation.h
         Classes/CheckBox/CheckBox.h
         GeneralCommands/generalCommands.cpp
@@ -43,4 +43,5 @@ add_executable(Console_Editor_Upgraded main.cpp
         Classes/ConsoleEditor/delete_frame_console_editor.cpp
         Classes/ConsoleEditor/print_all_console_editor.cpp
         Classes/ConsoleEditor/encrypt_console_editor.cpp
+        Classes/ConsoleEditor/undo_console_editor.cpp
 )

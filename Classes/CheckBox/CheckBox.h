@@ -20,6 +20,7 @@ public:
     }
 
     static void printHelpInfo();
+    // static void undo(CheckBox &frame, checkBoxCommand *command);
 
     void setCheckBoxInfo();
     void setCheckBoxStatus();

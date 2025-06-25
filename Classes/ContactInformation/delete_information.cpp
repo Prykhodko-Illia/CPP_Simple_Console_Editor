@@ -1,15 +1,5 @@
 ﻿#include "ContactInformation.h"
 
-void infoLineClearing(infoLine *linePointer, bool nextFlag) {
-    deleteString(linePointer->name);
-    deleteString(linePointer->surname);
-    deleteString(linePointer->email);
-
-    if (nextFlag) {
-        linePointer->next = nullptr;
-    }
-}
-
 void internalDeleteInfo(infoLine *&infoLineHead, int lineNumber, contactCommand *cmd, int &linesCount) {
     if (lineNumber == 1) {
         cmd->name = infoLineHead->name;
@@ -33,7 +23,7 @@ void internalDeleteInfo(infoLine *&infoLineHead, int lineNumber, contactCommand 
         cmd->surname = currentLine->surname;
         cmd->email = currentLine->email;
 
-        infoLineClearing(currentLine, true);
+        infoLineInitialization(currentLine, true);
         previousLine->next = nullptr;
         delete currentLine;
 

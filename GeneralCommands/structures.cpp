@@ -45,6 +45,8 @@ struct contactCommand final : command {
 };
 
 struct checkBoxCommand final : command {
-    bool statusChanged = false;
+    int status = -1;
     start *content = nullptr;
+
+    bool del_first = false;
 };

@@ -28,9 +28,12 @@ void internalDelete(textLine *, textCommand*, int, int, int);
 void internalInsert(textLine *, start *, int, int);
 
 void infoLineInitialization(infoLine *, bool);
-void infoLineClearing(infoLine *, bool);
 void internalSetInField(infoLine *, const std::string &, start *, contactCommand * = nullptr);
 void internalDeleteInfo(infoLine *&, int, contactCommand *, int &);
 
+void checkLineInitialization(checkLine *, bool);
+void internalSetCheckBoxInfo(checkLine *, start *, int, checkBoxCommand *);
+void internalSetCheckBoxStatus(checkLine *, int, int, checkBoxCommand *);
+void internalDeleteCheckLine(checkLine *&, int, checkBoxCommand *, int &);
 
 #endif //LIBRARY_H

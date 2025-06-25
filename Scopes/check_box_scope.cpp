@@ -1,6 +1,6 @@
 ﻿#include "scopes.h"
 
-int checkBoxScope(CheckBox &check_box, const std::stack<command *> &undoStack) {
+int checkBoxScope(CheckBox &check_box, std::stack<command *> &undoStack, int frameNumber) {
     while (true) {
         std::string command = getCommand();
 
@@ -10,16 +10,16 @@ int checkBoxScope(CheckBox &check_box, const std::stack<command *> &undoStack) {
 
         switch(command[0]) {
             case '1':
-                check_box.setCheckBoxInfo();
+                check_box.setCheckBoxInfo(undoStack, frameNumber);
                 break;
             case '2':
-                check_box.setCheckBoxStatus();
+                check_box.setCheckBoxStatus(undoStack, frameNumber);
                 break;
             case '3':
-                check_box.newCheckLine();
+                check_box.newCheckLine(undoStack, frameNumber);
                 break;
             case '4':
-                check_box.deleteCheckLine();
+                check_box.deleteCheckLine(undoStack, frameNumber);
                 break;
             case 'h':
                 if (command[1] == 'e' & command[2] == 'l' & command[3] == 'p') CheckBox::printHelpInfo();

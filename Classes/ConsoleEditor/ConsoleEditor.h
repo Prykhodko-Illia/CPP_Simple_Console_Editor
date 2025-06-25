@@ -35,9 +35,6 @@ public:
     //     int cursorLine = 1;
     //     int cursorChar = 0;
     // }
-    //
-
-    // void redo();
 };
 
 #endif //TEXTEDITOR_H

@@ -16,7 +16,7 @@ void undoNewLine(infoLine *infoLineHead, contactCommand *command, int linesCount
     command->surname = lastLine->surname;
     command->email = lastLine->email;
 
-    infoLineClearing(lastLine, true);
+    infoLineInitialization(lastLine, true);
     delete lastLine;
 
     previousLine->next = nullptr;

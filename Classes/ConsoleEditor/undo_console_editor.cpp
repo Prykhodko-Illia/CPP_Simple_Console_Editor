@@ -24,11 +24,11 @@ void ConsoleEditor::undo() {
             );
             break;
         case 3:
-            // CheckBox::undo(
-            // *(dynamic_cast<CheckBox *>(currentFrame)),
-            //     dynamic_cast<checkBoxCommand *>(currentCommand)
-            // );
-            // break;
+            CheckBox::undo(
+            *(dynamic_cast<CheckBox *>(currentFrame)),
+                dynamic_cast<checkBoxCommand *>(currentCommand)
+            );
+            break;
         default:
             break;
     }

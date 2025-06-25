@@ -5,7 +5,7 @@
 
 int textInformationScope(TextInformation &, std::stack<command *> &, int);
 int contactInformationScope(ContactInformation &, std::stack<command *> &, int);
-int checkBoxScope(CheckBox &, const std::stack<command *> &);
+int checkBoxScope(CheckBox &, std::stack<command *> &, int);
 int consoleEditorScope();
 
 #endif //SCOPES_H

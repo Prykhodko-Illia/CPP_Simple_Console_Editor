@@ -34,7 +34,8 @@ void ConsoleEditor::editFrame() {
 
                 checkBoxScope(
                     *(dynamic_cast<CheckBox *>(frames[frameNumber - 1])),
-                    undoStack
+                    undoStack,
+                    frameNumber
                     );
                 break;
             default:

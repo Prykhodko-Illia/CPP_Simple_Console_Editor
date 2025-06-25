@@ -18,10 +18,10 @@ void ConsoleEditor::redo() {
                 );
             break;
         case 2:
-            // ContactInformation::redo(
-            // *(dynamic_cast<ContactInformation *>(currentFrame)),
-            //     dynamic_cast<contactCommand *>(currentCommand)
-            // );
+            ContactInformation::redo(
+            *(dynamic_cast<ContactInformation *>(currentFrame)),
+                dynamic_cast<contactCommand *>(currentCommand)
+            );
             break;
         case 3:
             // CheckBox::redo(

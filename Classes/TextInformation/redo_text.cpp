@@ -12,8 +12,8 @@ void redoInsert(textLine *lineHead, textCommand const *currentCommand) {
     internalInsert(lineHead, currentCommand->content, currentCommand->lineNumber, currentCommand->index);
 }
 
-void redoDelete(textLine *lineHead, textCommand const *currentCommand) {
-    internalDelete(lineHead, nullptr, currentCommand->lineNumber, currentCommand->index, currentCommand->size);
+void redoDelete(textLine *lineHead, textCommand *currentCommand) {
+    internalDelete(lineHead, currentCommand, currentCommand->lineNumber, currentCommand->index, currentCommand->size);
 }
 
 void redoInsertReplacement(textLine *lineHead, textCommand *currentCommand) {

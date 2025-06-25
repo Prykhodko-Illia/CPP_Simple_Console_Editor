@@ -20,7 +20,7 @@ public:
 
     static void printHelpInfo();
     static void undo(ContactInformation &frame, contactCommand *command);
-    // static void redo(ContactInformation &frame, contactCommand *command);
+    static void redo(ContactInformation &frame, contactCommand *command);
 
     void setInfo(std::stack<command *> &undoStack, int frameNumber);
     void editInfo(std::stack<command *> &undoStack, int frameNumber);

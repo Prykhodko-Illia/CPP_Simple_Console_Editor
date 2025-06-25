@@ -10,20 +10,8 @@ void infoLineClearing(infoLine *linePointer, bool nextFlag) {
     }
 }
 
-void ContactInformation::deleteInfo(std::stack<command *> &undoStack, int frameNumber) {
-    int line = getNumber("Write the line number to delete");
-
-    if (line < 1) {
-        std::cout << "Lines numbers are integers";
-        return;
-    }
-
-    auto cmd = new contactCommand;
-    cmd->frameNumber = frameNumber;
-    cmd->cmdNumber = 4;
-    cmd->lineNumber = line;
-
-    if (line == 1) {
+void internalDeleteInfo(infoLine *&infoLineHead, int lineNumber, contactCommand *cmd, int &linesCount) {
+    if (lineNumber == 1) {
         cmd->name = infoLineHead->name;
         cmd->surname = infoLineHead->surname;
         cmd->email = infoLineHead->email;
@@ -36,7 +24,7 @@ void ContactInformation::deleteInfo(std::stack<command *> &undoStack, int frameN
         } else {
             cmd->del_first = true;
         }
-    } else if (line >= linesCount) {
+    } else if (lineNumber >= linesCount) {
         auto previousLine = dynamic_cast<infoLine *>(getLine(infoLineHead, linesCount - 2));
 
         auto currentLine = dynamic_cast<infoLine *>(previousLine->next);
@@ -63,6 +51,22 @@ void ContactInformation::deleteInfo(std::stack<command *> &undoStack, int frameN
 
         --linesCount;
     }
+}
+
+void ContactInformation::deleteInfo(std::stack<command *> &undoStack, int frameNumber) {
+    int lineNumber = getNumber("Write the line number to delete");
+
+    if (lineNumber < 1) {
+        std::cout << "Lines numbers are integers";
+        return;
+    }
+
+    auto cmd = new contactCommand;
+    cmd->frameNumber = frameNumber;
+    cmd->cmdNumber = 4;
+    cmd->lineNumber = lineNumber;
+
+    internalDeleteInfo(infoLineHead, lineNumber, cmd, linesCount);
 
     undoStack.push(cmd);
 }

@@ -57,6 +57,7 @@ void TextInformation::undo(TextInformation &frame, textCommand *command) {
         case 2:
             undoDeleteLine(frame.lineHead);
             break;
+        case 6:
         case 12:
             undoInsert(frame.lineHead, command);
             break;

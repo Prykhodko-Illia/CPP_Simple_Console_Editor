@@ -3,21 +3,18 @@
 void internalSetInField(infoLine *line, const std::string &fieldName, start *value, contactCommand *cmd) {
     if (fieldName == "name") {
         if (cmd != nullptr) cmd->name = line->name;
-        deleteString(line->name);
 
         line->name = value;
     }
 
     if (fieldName == "surname") {
         if (cmd != nullptr) cmd->surname = line->surname;
-        deleteString(line->surname);
 
         line->surname = value;
     }
 
     if (fieldName == "email") {
         if (cmd != nullptr) cmd->email = line->email;
-        deleteString(line->email);
 
         line->email = value;
     }

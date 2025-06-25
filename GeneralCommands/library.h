@@ -30,6 +30,7 @@ void internalInsert(textLine *, start *, int, int);
 void infoLineInitialization(infoLine *, bool);
 void infoLineClearing(infoLine *, bool);
 void internalSetInField(infoLine *, const std::string &, start *, contactCommand * = nullptr);
+void internalDeleteInfo(infoLine *&, int, contactCommand *, int &);
 
 
 #endif //LIBRARY_H

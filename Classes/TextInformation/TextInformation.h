@@ -3,6 +3,7 @@
 
 #include "../../GeneralCommands/library.h"
 #include "../Frame/Frame.h"
+#include <stack>
 
 class TextInformation : public Frame {
 private:
@@ -22,20 +23,22 @@ public:
     }
 
     static void printHelpInfo();
+    static void undo(TextInformation &frame, textCommand *command);
+    static void redo(TextInformation &frame, textCommand *command);
 
-    void append();
-    void newLine();
+    void append(std::stack<command *> &undoStack, int frameNumber);
+    void newLine(std::stack<command *> &undoStack, int frameNumber);
 
-    void insert();
-    void insert_replacement();
+    void insert(std::stack<command *> &undoStack, int frameNumber);
+    void insert_replacement(std::stack<command *> &undoStack, int frameNumber);
 
-    void deleteContent();
+    void deleteContent(std::stack<command *> &undoStack, int frameNumber);
     void search();
 
     void setCursor();
 
     void cut();
-    void paste();
+    void paste(std::stack<command *> &undoStack, int frameNumber);
     void copy();
 
     void printContent() override;
@@ -44,7 +47,7 @@ public:
         return lineHead;
     }
 
-    ~TextInformation() {
+    ~TextInformation() final{
         clearHeap(lineHead);
     }
 };

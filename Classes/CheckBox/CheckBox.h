@@ -3,6 +3,7 @@
 
 #include "../../GeneralCommands/library.h"
 #include "../Frame/Frame.h"
+#include <stack>
 
 class CheckBox : public Frame {
 private:
@@ -20,12 +21,14 @@ public:
     }
 
     static void printHelpInfo();
+    static void undo(CheckBox &frame, checkBoxCommand *command);
+    static void redo(CheckBox &frame, checkBoxCommand *command);
 
-    void setCheckBoxInfo();
-    void setCheckBoxStatus();
-    void newCheckLine();
+    void setCheckBoxInfo(std::stack<command *> &undoStack, int frameNumber);
+    void setCheckBoxStatus(std::stack<command *> &undoStack, int frameNumber);
+    void newCheckLine(std::stack<command *> &undoStack, int frameNumber);
 
-    void deleteCheckLine();
+    void deleteCheckLine(std::stack<command *> &undoStack, int frameNumber);
 
     void printContent() override;
 

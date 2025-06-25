@@ -1,6 +1,6 @@
 ﻿#include "TextInformation.h"
 
-void internalDelete(textLine *lineHead, command *cmd, int lineNum, int index, int size) {
+void internalDelete(textLine *lineHead, textCommand *cmd, int lineNum, int index, int size) {
     int i = 0;
 
     start *indexPointer = getCharPointerByIndexes(lineHead, lineNum, index - 1);
@@ -9,7 +9,7 @@ void internalDelete(textLine *lineHead, command *cmd, int lineNum, int index, in
     if (index == 0) currentChar = indexPointer;
     else currentChar = indexPointer->ptr;
 
-    if (cmd != nullptr) cmd->ptr = currentChar;
+    if (cmd != nullptr) cmd->content = currentChar;
 
     while (currentChar != nullptr && i < size) {
         previousChar = currentChar;
@@ -26,7 +26,7 @@ void internalDelete(textLine *lineHead, command *cmd, int lineNum, int index, in
             j++;
         }
 
-        if (cmd != nullptr) cmd->lineNum = j + 1;
+        if (cmd != nullptr) cmd->lineNumber = j + 1;
         currentLine->content = currentChar;
     }
     else indexPointer->ptr = currentChar;
@@ -34,27 +34,23 @@ void internalDelete(textLine *lineHead, command *cmd, int lineNum, int index, in
     if (previousChar) previousChar->ptr = nullptr;
 }
 
-void TextInformation::deleteContent() {
-    // std::cout << "Choose line, index and number of symbols" << std::endl;
-    //
-    // int lineNum, index, size;
-    // std::cin >> lineNum >> index >> size;
-
+void TextInformation::deleteContent(std::stack<command *> &undoStack, int frameNumber) {
     std::cout << "Choose number of size to delete" << std::endl;
     int size;
     std::cin >> size;
 
     if (size == 0) return;
 
-    // command *cmd = new command;
-    // cmd->cmdNumber = 8;
-    // cmd->lineNum = cursorLine;
-    // cmd->index = cursorChar;
-    // cmd->size = size;
+    auto cmd = new textCommand;
+    cmd->frameNumber = frameNumber;
+    cmd->cmdNumber = 8;
+    cmd->lineNumber = cursorLine;
+    cmd->index = cursorChar;
+    cmd->size = size;
 
-    internalDelete(lineHead, nullptr, cursorLine, cursorChar, size);
+    internalDelete(lineHead, cmd, cursorLine, cursorChar, size);
 
-    // undoStack.push(cmd);
+    undoStack.push(cmd);
 
     std::cout << "Succesfully deleted" << std::endl;
 }

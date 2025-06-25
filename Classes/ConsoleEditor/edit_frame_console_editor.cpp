@@ -12,19 +12,31 @@ void ConsoleEditor::editFrame() {
                 std::cout << "You are in the text frame:" << std::endl;
                 TextInformation::printHelpInfo();
 
-                textInformationScope(*(dynamic_cast<TextInformation *>(frames[frameNumber - 1])));
+                textInformationScope(
+                    *(dynamic_cast<TextInformation *>(frames[frameNumber - 1])),
+                    undoStack,
+                    frameNumber
+                    );
                 break;
             case 2:
                 std::cout << "You are in the contact info frame:" << std::endl;
                 ContactInformation::printHelpInfo();
 
-                contactInformationScope(*(dynamic_cast<ContactInformation *>(frames[frameNumber - 1])));
+                contactInformationScope(
+                    *(dynamic_cast<ContactInformation *>(frames[frameNumber - 1])),
+                    undoStack,
+                    frameNumber
+                    );
                 break;
             case 3:
                 std::cout << "You are in the checkbox frame:" << std::endl;
                 CheckBox::printHelpInfo();
 
-                checkBoxScope(*(dynamic_cast<CheckBox *>(frames[frameNumber - 1])));
+                checkBoxScope(
+                    *(dynamic_cast<CheckBox *>(frames[frameNumber - 1])),
+                    undoStack,
+                    frameNumber
+                    );
                 break;
             default:
                 std::cout << "Can't access to the frame" << std::endl;

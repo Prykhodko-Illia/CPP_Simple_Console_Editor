@@ -8,6 +8,8 @@ void ConsoleEditor::printHelpInfo() {
     std::cout << "4 - Print Information" << std::endl;
     std::cout << "5 - Encrypt text" << std::endl;
     std::cout << "6 - Decrypt text" << std::endl;
+    std::cout << "7 - Undo" << std::endl;
+    std::cout << "8 - Redo" << std::endl;
     std::cout << std::endl;
     std::cout << "0 - End execution" << std::endl;
     std::cout << std::endl;

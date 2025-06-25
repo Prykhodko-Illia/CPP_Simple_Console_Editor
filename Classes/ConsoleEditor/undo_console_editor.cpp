@@ -18,10 +18,10 @@ void ConsoleEditor::undo() {
                 );
             break;
         case 2:
-            // ContactInformation::undo(
-            // *(dynamic_cast<ContactInformation *>(currentFrame)),
-            //     dynamic_cast<contactCommand *>(currentCommand)
-            // );
+            ContactInformation::undo(
+            *(dynamic_cast<ContactInformation *>(currentFrame)),
+                dynamic_cast<contactCommand *>(currentCommand)
+            );
             break;
         case 3:
             // CheckBox::undo(

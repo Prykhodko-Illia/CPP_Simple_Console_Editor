@@ -24,7 +24,8 @@ void ConsoleEditor::editFrame() {
 
                 contactInformationScope(
                     *(dynamic_cast<ContactInformation *>(frames[frameNumber - 1])),
-                    undoStack
+                    undoStack,
+                    frameNumber
                     );
                 break;
             case 3:

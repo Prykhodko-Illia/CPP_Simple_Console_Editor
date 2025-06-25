@@ -4,7 +4,7 @@
 #include "../Classes/classes.h"
 
 int textInformationScope(TextInformation &, std::stack<command *> &, int);
-int contactInformationScope(ContactInformation &, const std::stack<command *> &);
+int contactInformationScope(ContactInformation &, std::stack<command *> &, int);
 int checkBoxScope(CheckBox &, const std::stack<command *> &);
 int consoleEditorScope();
 

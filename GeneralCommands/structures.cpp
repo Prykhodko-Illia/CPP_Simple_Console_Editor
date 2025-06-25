@@ -40,6 +40,8 @@ struct contactCommand final : command {
     start *name = nullptr;
     start *surname = nullptr;
     start *email = nullptr;
+
+    bool del_first = false;
 };
 
 struct checkBoxCommand final : command {

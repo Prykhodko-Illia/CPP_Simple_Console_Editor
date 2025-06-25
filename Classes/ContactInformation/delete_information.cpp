@@ -10,7 +10,7 @@ void infoLineClearing(infoLine *linePointer, bool nextFlag) {
     }
 }
 
-void ContactInformation::deleteInfo() {
+void ContactInformation::deleteInfo(std::stack<command *> &undoStack, int frameNumber) {
     int line = getNumber("Write the line number to delete");
 
     if (line < 1) {
@@ -18,27 +18,51 @@ void ContactInformation::deleteInfo() {
         return;
     }
 
+    auto cmd = new contactCommand;
+    cmd->frameNumber = frameNumber;
+    cmd->cmdNumber = 4;
+    cmd->lineNumber = line;
+
     if (line == 1) {
+        cmd->name = infoLineHead->name;
+        cmd->surname = infoLineHead->surname;
+        cmd->email = infoLineHead->email;
+
         infoLineInitialization(infoLineHead, false);
 
         if (infoLineHead->next != nullptr) {
             infoLineHead = dynamic_cast<infoLine *>(infoLineHead->next);
             --linesCount;
+        } else {
+            cmd->del_first = true;
         }
     } else if (line >= linesCount) {
-        auto *previousLine = dynamic_cast<infoLine *>(getLine(infoLineHead, linesCount - 2));
-        infoLineClearing(dynamic_cast<infoLine *>(previousLine->next), true);
+        auto previousLine = dynamic_cast<infoLine *>(getLine(infoLineHead, linesCount - 2));
 
+        auto currentLine = dynamic_cast<infoLine *>(previousLine->next);
+
+        cmd->name = currentLine->name;
+        cmd->surname = currentLine->surname;
+        cmd->email = currentLine->email;
+
+        infoLineClearing(currentLine, true);
         previousLine->next = nullptr;
+        delete currentLine;
+
         --linesCount;
     } else {
-        auto *previousLine = dynamic_cast<infoLine *>(getLine(infoLineHead, linesCount - 2));
-        auto *lineToDelete = dynamic_cast<infoLine *>(previousLine->next);
+        auto previousLine = dynamic_cast<infoLine *>(getLine(infoLineHead, linesCount - 2));
+        auto lineToDelete = dynamic_cast<infoLine *>(previousLine->next);
 
-        infoLineClearing(lineToDelete, false);
+        cmd->name = lineToDelete->name;
+        cmd->surname = lineToDelete->surname;
+        cmd->email = lineToDelete->email;
+
         previousLine->next = lineToDelete->next;
-
         delete lineToDelete;
+
         --linesCount;
     }
+
+    undoStack.push(cmd);
 }

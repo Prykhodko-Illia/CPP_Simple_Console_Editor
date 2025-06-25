@@ -1,6 +1,6 @@
 ﻿#include "scopes.h"
 
-int contactInformationScope(ContactInformation &contact_information, const std::stack<command *> &) {
+int contactInformationScope(ContactInformation &contact_information, std::stack<command *> &undoStack, int frameNumber) {
     while (true) {
         std::string command = getCommand();
 
@@ -10,16 +10,16 @@ int contactInformationScope(ContactInformation &contact_information, const std::
 
         switch(command[0]) {
             case '1':
-                contact_information.setInfo();
+                contact_information.setInfo(undoStack, frameNumber);
                 break;
             case '2':
-                contact_information.editInfo();
+                contact_information.editInfo(undoStack, frameNumber);
                 break;
             case '3':
-                contact_information.newLine();
+                contact_information.newLine(undoStack, frameNumber);
                 break;
             case '4':
-                contact_information.deleteInfo();
+                contact_information.deleteInfo(undoStack, frameNumber);
                 break;
             case 'h':
                 if (command[1] == 'e' & command[2] == 'l' & command[3] == 'p') ContactInformation::printHelpInfo();

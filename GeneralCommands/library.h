@@ -27,7 +27,9 @@ void internalNewLine(textLine *);
 void internalDelete(textLine *, textCommand*, int, int, int);
 void internalInsert(textLine *, start *, int, int);
 
-
 void infoLineInitialization(infoLine *, bool);
+void infoLineClearing(infoLine *, bool);
+void internalSetInField(infoLine *, const std::string &, start *, contactCommand * = nullptr);
+
 
 #endif //LIBRARY_H

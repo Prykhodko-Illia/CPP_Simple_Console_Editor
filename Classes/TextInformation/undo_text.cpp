@@ -13,7 +13,7 @@ void undoDeleteLine(textLine *lineHead) {
     delete temp;
 }
 
-void undoAppendLine(textLine *lineHead, const textCommand *currentCommand) {
+void undoAppendLine(textLine *lineHead, textCommand *currentCommand) {
     int lineIdx = 1, charIdx = 0;
 
     const textLine *lastLine = lineHead;
@@ -29,11 +29,11 @@ void undoAppendLine(textLine *lineHead, const textCommand *currentCommand) {
     }
 
     if (charIdx != 0) charIdx++;
-    internalDelete(lineHead, nullptr, lineIdx, charIdx, currentCommand->size);
+    internalDelete(lineHead, currentCommand, lineIdx, charIdx, currentCommand->size);
 }
 
-void undoInsert(textLine *lineHead, const textCommand *currentCommand) {
-    internalDelete(lineHead, nullptr, currentCommand->lineNumber, currentCommand->index, currentCommand->size);
+void undoInsert(textLine *lineHead, textCommand *currentCommand) {
+    internalDelete(lineHead, currentCommand, currentCommand->lineNumber, currentCommand->index, currentCommand->size);
 }
 
 void undoDelete(textLine *lineHead, const textCommand *currentCommand) {
@@ -57,7 +57,6 @@ void TextInformation::undo(TextInformation &frame, textCommand *command) {
         case 2:
             undoDeleteLine(frame.lineHead);
             break;
-        case 6:
         case 12:
             undoInsert(frame.lineHead, command);
             break;
@@ -70,5 +69,4 @@ void TextInformation::undo(TextInformation &frame, textCommand *command) {
         default:
             break;
     }
-
 }

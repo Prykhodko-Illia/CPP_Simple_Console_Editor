@@ -22,6 +22,7 @@ public:
 
     static void printHelpInfo();
     static void undo(CheckBox &frame, checkBoxCommand *command);
+    static void redo(CheckBox &frame, checkBoxCommand *command);
 
     void setCheckBoxInfo(std::stack<command *> &undoStack, int frameNumber);
     void setCheckBoxStatus(std::stack<command *> &undoStack, int frameNumber);

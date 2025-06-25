@@ -32,8 +32,8 @@ void internalSetInField(infoLine *, const std::string &, start *, contactCommand
 void internalDeleteInfo(infoLine *&, int, contactCommand *, int &);
 
 void checkLineInitialization(checkLine *, bool);
-void internalSetCheckBoxInfo(checkLine *, start *, int, checkBoxCommand *);
-void internalSetCheckBoxStatus(checkLine *, int, int, checkBoxCommand *);
+void internalSetCheckBoxInfo(checkLine *, start *, checkBoxCommand *);
+void internalSetCheckBoxStatus(checkLine *, bool, checkBoxCommand *);
 void internalDeleteCheckLine(checkLine *&, int, checkBoxCommand *, int &);
 
 #endif //LIBRARY_H

@@ -24,11 +24,11 @@ void ConsoleEditor::redo() {
             );
             break;
         case 3:
-            // CheckBox::redo(
-            // *(dynamic_cast<CheckBox *>(currentFrame)),
-            //     dynamic_cast<checkBoxCommand *>(currentCommand)
-            // );
-            // break;
+            CheckBox::redo(
+            *(dynamic_cast<CheckBox *>(currentFrame)),
+                dynamic_cast<checkBoxCommand *>(currentCommand)
+            );
+            break;
         default:
             break;
     }

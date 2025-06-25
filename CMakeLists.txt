@@ -48,4 +48,5 @@ add_executable(Console_Editor_Upgraded main.cpp
         Classes/ContactInformation/undo_information.cpp
         Classes/ContactInformation/redo_information.cpp
         Classes/CheckBox/undo_check_box.cpp
+        Classes/CheckBox/redo_checkBox.cpp
 )

@@ -98,36 +98,58 @@ int ConsoleEditor::saveToFile() {
     }
 
     fclose(file);
-    printf("Content were successfully written to the file\n");
+    printf("Content were successfully saved to the file\n");
 
     return 0;
 }
-//
-// textLine * loadFromFile(textLine *lineHead) {
-//     FILE* file = nullptr;
-//
-//     char fileContent[100];
-//     std::cout << "Enter the file name for loading:" << std::endl;
-//
-//     char filePath[30] = "..//";
-//
-//     file = fopen(getFilePath(filePath), "r");
-//
-//     if (file == nullptr) {
-//         std::cout << "Error opening file" << std::endl;
-//         fclose(file);
-//         return lineHead;
-//     }
-//
-//     clearHeap(lineHead);
-//
-//     lineHead = new textLine;
-//     lineHead->content = nullptr;
-//     lineHead->next = nullptr;
-//
-//     textLine *currentLine = nullptr;
-//     currentLine = lineHead;
-//
+
+void loadText() {}
+void loadContact() {}
+void loadCheckBox() {}
+
+int ConsoleEditor::loadFromFile() {
+    FILE* file = nullptr;
+    char fileContent[100];
+    std::cout << "Enter the file name for loading:" << std::endl;
+
+    char filePath[40] = "..//Files//";
+    file = fopen(getFilePath(filePath), "r");
+
+    if (file == nullptr) {
+        std::cout << "Error opening file" << std::endl;
+        fclose(file);
+        return 1;
+    }
+
+    for (auto &frame : frames) {
+        delete frame;
+    }
+    frames.clear();
+
+    while (fgets(fileContent, 100, file)) {
+        if (fileContent[0] != '᠎') {
+            continue;
+        }
+
+        switch (fileContent[1]) {
+            case 1:
+
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default: break;
+        }
+    }
+
+    fclose(file);
+    printf("Content were successfully loaded from the file\n");
+
+    return 0;
+}
+
+
 //     while (fgets(fileContent, 100, file)) {
 //
 //         start *firstChar = nullptr;
@@ -161,7 +183,4 @@ int ConsoleEditor::saveToFile() {
 //             }
 //         }
 //     }
-//     fclose(file);
-//
-//     return lineHead;
 // }

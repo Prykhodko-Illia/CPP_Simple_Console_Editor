@@ -13,8 +13,16 @@ int consoleEditorScope() {
 
         switch(command[0]) {
             case '1':
-                console_editor.createNewFrame();
-                break;
+                switch (command[1]) {
+                case '\0':
+                        console_editor.createNewFrame();
+                        break;
+                case '0':
+                        console_editor.loadFromFile();
+                        break;
+                default:
+                        break;
+                }
             case '2':
                 console_editor.deleteFrame();
                 break;

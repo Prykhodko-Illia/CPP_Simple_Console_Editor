@@ -30,11 +30,7 @@ public:
     void redo();
 
     int saveToFile();
-    // void load () {
-    //     lineHead = loadFromFile(lineHead);
-    //     int cursorLine = 1;
-    //     int cursorChar = 0;
-    // }
+    int loadFromFile();
 };
 
 #endif //TEXTEDITOR_H

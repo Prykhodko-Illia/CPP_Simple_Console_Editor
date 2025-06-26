@@ -126,61 +126,156 @@ int ConsoleEditor::loadFromFile() {
     }
     frames.clear();
 
+    int currentFrame = 0;
+    int j = 0;
+
     while (fgets(fileContent, 100, file)) {
-        if (fileContent[0] != '᠎') {
+
+        if (fileContent[0] == '\302' && fileContent[1] == '\247') {
+            switch (fileContent[2]) {
+                case '1':
+                    currentFrame = 1;
+                    frames.push_back(new TextInformation());
+                    break;
+                case '2':
+                    currentFrame = 2;
+                    frames.push_back(new ContactInformation());
+                    break;
+                case '3':
+                    currentFrame = 3;
+                    frames.push_back(new CheckBox());
+                    break;
+                default: currentFrame = 0;
+            }
             continue;
         }
 
-        switch (fileContent[1]) {
-            case 1:
+        switch (currentFrame) {
 
+            case 1: {
+                auto textFrame = dynamic_cast<TextInformation *>(frames.back());
+                textLine *textLineHead = textFrame->getLineHead();
+                auto currentTextLine = dynamic_cast<textLine *>(getLastLine(textLineHead));
+
+                start *firstChar = nullptr;
+                start *currentChar = nullptr;
+                for (int i = 0; (fileContent[i] != '\0') && (i < 100); i++) {
+                    if (fileContent[i] == '\n') {
+                        currentTextLine->next = new textLine;
+                        currentTextLine = dynamic_cast<textLine *>(currentTextLine->next);
+
+                        currentTextLine->content = nullptr;
+                        currentTextLine->next = nullptr;
+
+                        firstChar == nullptr;
+                        continue;
+                    }
+
+                    if (firstChar == nullptr) {
+                        firstChar = new start;
+                        firstChar->value = fileContent[i];
+                        firstChar->ptr = nullptr;
+
+                        currentTextLine->content = firstChar;
+                    } else {
+                        currentChar = new start;
+                        currentChar->value = fileContent[i];
+                        currentChar->ptr = nullptr;
+
+                        firstChar->ptr = currentChar;
+                        firstChar = firstChar->ptr;
+                    }
+                }
+            }
                 break;
-            case 2:
+            case 2: {
+                auto contactFrame = dynamic_cast<ContactInformation *>(frames.back());
+                infoLine *infoLineHead = contactFrame->getLineHead();
+                auto currentInfoLine = dynamic_cast<infoLine *>(getLastLine(infoLineHead));
+
+                start *firstChar = nullptr;
+                start *currentChar = nullptr;
+                
+                for (int i = 1; (fileContent[i] != '\0') && (i < 100); ++i) {
+                    if (fileContent[i] == '\n') {
+                        currentInfoLine->next = new infoLine;
+                        currentInfoLine = dynamic_cast<infoLine *>(currentInfoLine->next);
+
+                        currentInfoLine->name = nullptr;
+                        currentInfoLine->surname = nullptr;
+                        currentInfoLine->email = nullptr;
+                        currentInfoLine->next = nullptr;
+
+                        firstChar == nullptr;
+
+                        ++j;
+                        continue;
+                    }
+
+                    if (firstChar == nullptr) {
+                        firstChar = new start;
+                        firstChar->value = fileContent[i];
+                        firstChar->ptr = nullptr;
+
+                        if (j % 3 == 1) currentInfoLine->name = firstChar;
+                        if (j % 3 == 2) currentInfoLine->surname = firstChar;
+                        if (j % 3 == 0) currentInfoLine->email = firstChar;
+
+                    } else {
+                        currentChar = new start;
+                        currentChar->value = fileContent[i];
+                        currentChar->ptr = nullptr;
+
+                        firstChar->ptr = currentChar;
+                        firstChar = firstChar->ptr;
+                    }
+                }
+            }
                 break;
-            case 3:
+            case 3: {
+                auto checkBoxFrame = dynamic_cast<CheckBox *>(frames.back());
+                checkLine *checkBoxHead = checkBoxFrame->getLineHead();
+                auto currentCheckLine = dynamic_cast<checkLine *>(getLastLine(checkBoxHead));
+
+                if (fileContent[0] == 0) currentCheckLine->status = false;
+                else if (fileContent[0] == 1) currentCheckLine->status = true;
+
+                start *firstChar = nullptr;
+                start *currentChar = nullptr;
+                for (int i = 1; (fileContent[i] != '\0') && (i < 100); i++) {
+                    if (fileContent[i] == '\n' && i != 1) {
+                        currentCheckLine->next = new checkLine;
+                        currentCheckLine = dynamic_cast<checkLine *>(currentCheckLine->next);
+
+                        currentCheckLine->context = nullptr;
+                        currentCheckLine->status = false;
+                        currentCheckLine->next = nullptr;
+
+                        firstChar == nullptr;
+                        continue;
+                    }
+
+                    if (firstChar == nullptr) {
+                        firstChar = new start;
+                        firstChar->value = fileContent[i];
+                        firstChar->ptr = nullptr;
+
+                        currentCheckLine->context = firstChar;
+                    } else {
+                        currentChar = new start;
+                        currentChar->value = fileContent[i];
+                        currentChar->ptr = nullptr;
+
+                        firstChar->ptr = currentChar;
+                        firstChar = firstChar->ptr;
+                    }
+                }
+            }
                 break;
-            default: break;
+            default: continue;
+            }
         }
-    }
-
     fclose(file);
     printf("Content were successfully loaded from the file\n");
-
     return 0;
 }
-
-
-//     while (fgets(fileContent, 100, file)) {
-//
-//         start *firstChar = nullptr;
-//         start *currentChar = nullptr;
-//
-//         for (int i = 0; (fileContent[i] != '\0') && (i < 100); i++) {
-//             if (fileContent[i] == '\n') {
-//                 currentLine->next = new textLine;
-//                 currentLine = dynamic_cast<textLine *>(currentLine->next);
-//
-//                 currentLine->content = nullptr;
-//                 currentLine->next = nullptr;
-//
-//                 firstChar = nullptr;
-//                 continue;
-//             }
-//
-//             if (firstChar == nullptr) {
-//                 firstChar = new start;
-//                 firstChar->value = fileContent[i];
-//                 firstChar->ptr = nullptr;
-//
-//                 currentLine->content = firstChar;
-//             } else {
-//                 currentChar = new start;
-//                 currentChar->value = fileContent[i];
-//                 currentChar->ptr = nullptr;
-//
-//                 firstChar->ptr = currentChar;
-//                 firstChar = firstChar->ptr;
-//             }
-//         }
-//     }
-// }

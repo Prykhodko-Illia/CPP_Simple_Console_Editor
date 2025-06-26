@@ -23,6 +23,7 @@ int consoleEditorScope() {
                 default:
                         break;
                 }
+                break;
             case '2':
                 console_editor.deleteFrame();
                 break;

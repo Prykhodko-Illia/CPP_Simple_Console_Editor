@@ -32,7 +32,7 @@ public:
 
     void printContent() override;
 
-    checkLine * getLineHead() {
+    [[nodiscard]] checkLine * getLineHead() const{
         return checkLineHead;
     }
 

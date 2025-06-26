@@ -36,6 +36,9 @@ int consoleEditorScope() {
             case '8':
                 console_editor.redo();
                 break;
+            case '9':
+                console_editor.saveToFile();
+                break;
             case 'h':
                 if (command[1] == 'e' & command[2] == 'l' & command[3] == 'p') ConsoleEditor::printHelpInfo();
                 break;

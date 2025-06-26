@@ -7,7 +7,7 @@ char * getFilePath(char *filePath) {
 
     int i = 0;
     while ((fileName[i] != '\n') || (fileName[i] != '\0')) {
-        filePath[13 + i] = fileName[i];
+        filePath[11 + i] = fileName[i];
         i++;
 
         if (i > 15) break;
@@ -26,21 +26,52 @@ void writeString(FILE *file, start *currentChar) {
 }
 
 void writeText(FILE *file, TextInformation &frame) {
-    fputs("\u180e1", file);
+    fputs("\u180e1\n", file);
+
+    textLine *textLineHead = frame.getLineHead();
+    textLine *currentLine = textLineHead;
+
+    while (currentLine != nullptr) {
+        writeString(file, currentLine->content);
+        currentLine = dynamic_cast<textLine *>(currentLine->next);
+    }
 }
 
 void writeContact(FILE *file, ContactInformation &frame) {
-    fputs("\u180e2", file);
+    fputs("\u180e2\n", file);
+
+    infoLine *infoLineHead = frame.getLineHead();
+    infoLine *currentLine = infoLineHead;
+
+    while (currentLine != nullptr) {
+        writeString(file, currentLine->name);
+        writeString(file, currentLine->surname);
+        writeString(file, currentLine->email);
+
+        currentLine = dynamic_cast<infoLine *>(currentLine->next);
+    }
 }
 
 void writeCheckBox(FILE *file, CheckBox &frame) {
-    fputs("\u180e3", file);
+    fputs("\u180e3\n", file);
+
+    checkLine *checkLineHead = frame.getLineHead();
+    checkLine *currentLine = checkLineHead;
+
+    while (currentLine != nullptr) {
+        if (currentLine->status) fputc('1', file);
+        else fputc('0', file);
+
+        writeString(file, currentLine->context);
+
+        currentLine = dynamic_cast<checkLine *>(currentLine->next);
+    }
 }
 
 int ConsoleEditor::saveToFile() {
     FILE *file = nullptr;
 
-    char filePath[30] = "..//..//Files";
+    char filePath[40] = "..//Files//";
     printf("Enter the file name for saving:\n");
 
     file = fopen(getFilePath(filePath), "w");
@@ -66,19 +97,7 @@ int ConsoleEditor::saveToFile() {
         }
     }
 
-    // textLine *currentLine = nullptr;
-    // currentLine = lineHead;
-
-    // start *currentChar = nullptr;
-    //
-    // while (currentLine != nullptr) {
-    //     currentChar = currentLine->content;
-
-    //     currentLine = dynamic_cast<textLine *>(currentLine->next);
-    // }
-
     fclose(file);
-
     printf("Content were successfully written to the file\n");
 
     return 0;

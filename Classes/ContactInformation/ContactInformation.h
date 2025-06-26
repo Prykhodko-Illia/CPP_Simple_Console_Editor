@@ -30,7 +30,7 @@ public:
 
     void printContent() override;
 
-    infoLine * getLineHead() {
+    [[nodiscard]] infoLine * getLineHead() const {
         return infoLineHead;
     }
 

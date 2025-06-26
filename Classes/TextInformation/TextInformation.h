@@ -43,7 +43,7 @@ public:
 
     void printContent() override;
 
-    textLine * getLineHead() {
+    [[nodiscard]] textLine * getLineHead() const {
         return lineHead;
     }
 

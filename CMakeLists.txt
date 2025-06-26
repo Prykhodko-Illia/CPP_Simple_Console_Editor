@@ -7,7 +7,7 @@ add_executable(Console_Editor_Upgraded main.cpp
         Classes/ConsoleEditor/ConsoleEditor.h
         GeneralCommands/structures.cpp
         GeneralCommands/library.h
-        Classes/ConsoleEditor/fileCommands.cpp
+        Classes/ConsoleEditor/file_commands_console_editor.cpp
         Classes/TextInformation/undo_text.cpp
         Classes/TextInformation/redo_text.cpp
         Classes/ContactInformation/ContactInformation.h

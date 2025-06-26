@@ -7,7 +7,7 @@ char * getFilePath(char *filePath) {
 
     int i = 0;
     while ((fileName[i] != '\n') || (fileName[i] != '\0')) {
-        filePath[4 + i] = fileName[i];
+        filePath[13 + i] = fileName[i];
         i++;
 
         if (i > 15) break;
@@ -16,44 +16,73 @@ char * getFilePath(char *filePath) {
     return filePath;
 }
 
-//
-// int ConsoleEditor::saveToFile() {
-//     FILE* file = nullptr;
-//
-//     char filePath[30] = "..//";
-//     printf("Enter the file name for saving:\n");
-//
-//     file = fopen(getFilePath(filePath), "w");
-//
-//     if (file == nullptr) {
-//         printf("Error opening file.\n");
-//         fclose(file);
-//         return 1;
-//     }
-//
-//     textLine *currentLine = nullptr;
-//     currentLine = lineHead;
-//
-//     start *currentChar = nullptr;
-//
-//     while (currentLine != nullptr) {
-//         currentChar = currentLine->content;
-//
-//         while (currentChar != nullptr) {
-//             fputc(currentChar->value, file);
-//             currentChar = currentChar->ptr;
-//         }
-//
-//         fputs("\n", file);
-//         currentLine = dynamic_cast<textLine *>(currentLine->next);
-//     }
-//
-//     fclose(file);
-//
-//     printf("Content were successfully written to the file\n");
-//
-//     return 0;
-// }
+void writeString(FILE *file, start *currentChar) {
+     while (currentChar != nullptr) {
+         fputc(currentChar->value, file);
+         currentChar = currentChar->ptr;
+     }
+
+     fputc('\n', file);
+}
+
+void writeText(FILE *file, TextInformation &frame) {
+    fputs("\u180e1", file);
+}
+
+void writeContact(FILE *file, ContactInformation &frame) {
+    fputs("\u180e2", file);
+}
+
+void writeCheckBox(FILE *file, CheckBox &frame) {
+    fputs("\u180e3", file);
+}
+
+int ConsoleEditor::saveToFile() {
+    FILE *file = nullptr;
+
+    char filePath[30] = "..//..//Files";
+    printf("Enter the file name for saving:\n");
+
+    file = fopen(getFilePath(filePath), "w");
+
+    if (file == nullptr) {
+        printf("Error opening file.\n");
+        fclose(file);
+        return 1;
+    }
+
+    for (auto &frame : frames) {
+        switch(frame->getScopeId()) {
+            case 1:
+                writeText(file, *(dynamic_cast<TextInformation *>(frame)));
+                break;
+            case 2:
+                writeContact(file, *(dynamic_cast<ContactInformation *>(frame)));
+                break;
+            case 3:
+                writeCheckBox(file, *(dynamic_cast<CheckBox *>(frame)));
+                break;
+            default: break;
+        }
+    }
+
+    // textLine *currentLine = nullptr;
+    // currentLine = lineHead;
+
+    // start *currentChar = nullptr;
+    //
+    // while (currentLine != nullptr) {
+    //     currentChar = currentLine->content;
+
+    //     currentLine = dynamic_cast<textLine *>(currentLine->next);
+    // }
+
+    fclose(file);
+
+    printf("Content were successfully written to the file\n");
+
+    return 0;
+}
 //
 // textLine * loadFromFile(textLine *lineHead) {
 //     FILE* file = nullptr;

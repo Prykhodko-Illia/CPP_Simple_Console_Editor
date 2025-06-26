@@ -29,7 +29,7 @@ public:
     void undo();
     void redo();
 
-    // int saveToFile();
+    int saveToFile();
     // void load () {
     //     lineHead = loadFromFile(lineHead);
     //     int cursorLine = 1;

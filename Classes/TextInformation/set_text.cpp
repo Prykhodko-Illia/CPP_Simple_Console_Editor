@@ -16,7 +16,7 @@ void internalAppend(textLine *lineHead, start *newText) {
 }
 
 void TextInformation::append(std::stack<command *> &undoStack, int frameNumber) {
-    std::string input = getInput();
+    std::string input = getInput("Write the text to append: ");
 
     start *newText = nullptr;
     newText = convertStringToLinkedList(input, 32);

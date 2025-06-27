@@ -26,7 +26,7 @@ void setInField(infoLine *line, const std::string &fieldName, contactCommand *cm
     start *value = nullptr;
 
     {
-        std::string input = getInput();
+        std::string input = getInput("");
         value = convertStringToLinkedList(input, 32);
     }
 

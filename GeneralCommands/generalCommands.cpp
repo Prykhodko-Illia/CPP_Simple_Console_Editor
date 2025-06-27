@@ -38,8 +38,9 @@ line * getLastLine(line * firstLine) {
     return temporary;
 }
 
-std::string getInput() {
-    std::cout << "Enter text to append: "  << std::endl;;
+std::string getInput(const std::string &inputText) {
+
+    if (!inputText.empty()) std::cout << inputText  << std::endl;;
 
     std::string input;
     std::cin.ignore();
@@ -106,7 +107,10 @@ void printString(start *head, bool endLine) {
     start *temp = nullptr;
     temp = head;
 
-    if (head == nullptr) return;
+    if (head == nullptr) {
+        std::cout << std::endl;
+        return;
+    }
 
     int i = 0;
     while ((temp->ptr != nullptr) && (i < 1000)) {

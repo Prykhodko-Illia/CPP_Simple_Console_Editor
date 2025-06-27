@@ -1,7 +1,7 @@
 ﻿#include "ConsoleEditor.h"
 
 void ConsoleEditor::createNewFrame()  {
-    std::string frameName = getInput();
+    std::string frameName = getInput("Write frame name to create:\ntext | contact | checkbox");
 
     if (frameName == "text") {
         frames.push_back(new TextInformation());

@@ -17,8 +17,7 @@ int textInformationScope(TextInformation &text_information, std::stack<command *
                  case '0':
                      text_information.setCursor();
                      break;
-             default:
-                 break;
+             default: break;
              }
              break;
          case '2':

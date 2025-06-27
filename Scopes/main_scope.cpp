@@ -1,9 +1,7 @@
 ﻿#include "scopes.h"
 #include "../Classes/ConsoleEditor/ConsoleEditor.h"
 
-int consoleEditorScope() {
-    ConsoleEditor console_editor = ConsoleEditor();
-
+int consoleEditorScope(ConsoleEditor &console_editor) {
     std::cout << "You are working with the console editor: " << std::endl << std::endl;
     ConsoleEditor::printHelpInfo();
 

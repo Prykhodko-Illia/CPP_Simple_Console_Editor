@@ -29,12 +29,8 @@ public:
     void undo();
     void redo();
 
-    // int saveToFile();
-    // void load () {
-    //     lineHead = loadFromFile(lineHead);
-    //     int cursorLine = 1;
-    //     int cursorChar = 0;
-    // }
+    int saveToFile();
+    int loadFromFile();
 };
 
 #endif //TEXTEDITOR_H

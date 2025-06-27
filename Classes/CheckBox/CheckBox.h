@@ -32,7 +32,11 @@ public:
 
     void printContent() override;
 
-    checkLine * getLineHead() {
+    void incrementLinesCount() {
+        ++linesCount;
+    }
+
+    [[nodiscard]] checkLine * getLineHead() const{
         return checkLineHead;
     }
 

@@ -13,7 +13,16 @@ int consoleEditorScope() {
 
         switch(command[0]) {
             case '1':
-                console_editor.createNewFrame();
+                switch (command[1]) {
+                case '\0':
+                        console_editor.createNewFrame();
+                        break;
+                case '0':
+                        console_editor.loadFromFile();
+                        break;
+                default:
+                        break;
+                }
                 break;
             case '2':
                 console_editor.deleteFrame();
@@ -35,6 +44,9 @@ int consoleEditorScope() {
                 break;
             case '8':
                 console_editor.redo();
+                break;
+            case '9':
+                console_editor.saveToFile();
                 break;
             case 'h':
                 if (command[1] == 'e' & command[2] == 'l' & command[3] == 'p') ConsoleEditor::printHelpInfo();

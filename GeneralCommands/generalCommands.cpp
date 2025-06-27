@@ -106,6 +106,8 @@ void printString(start *head, bool endLine) {
     start *temp = nullptr;
     temp = head;
 
+    if (head == nullptr) return;
+
     int i = 0;
     while ((temp->ptr != nullptr) && (i < 1000)) {
         std::cout << temp->value;

@@ -43,8 +43,11 @@ public:
 
     void printContent() override;
 
-    textLine * getLineHead() {
+    [[nodiscard]] textLine * getLineHead() const {
         return lineHead;
+    }
+    void setLineHead(textLine *newHead) {
+        lineHead = newHead;
     }
 
     ~TextInformation() final{

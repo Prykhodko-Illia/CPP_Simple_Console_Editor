@@ -46,6 +46,9 @@ public:
     [[nodiscard]] textLine * getLineHead() const {
         return lineHead;
     }
+    void setLineHead(textLine *newHead) {
+        lineHead = newHead;
+    }
 
     ~TextInformation() final{
         clearHeap(lineHead);

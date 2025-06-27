@@ -103,7 +103,32 @@ int ConsoleEditor::saveToFile() {
     return 0;
 }
 
-void loadText() {}
+start * loadLine(const char *fileContent) {
+    start *result = nullptr;
+    start *currentChar = nullptr;
+    start *lastChar = nullptr;
+
+    for (int i = 0; (fileContent[i] != '\0') && (i < 100); i++) {
+        if (fileContent[i] != '\n') {
+            currentChar = new start;
+            currentChar->value = fileContent[i];
+            currentChar->ptr = nullptr;
+
+            if (lastChar != nullptr) {
+                lastChar->ptr = currentChar;
+            }
+
+            if (i == 0) {
+                result = currentChar;
+            }
+
+            lastChar = currentChar;
+        }
+    }
+
+    return result;
+}
+
 void loadContact() {}
 void loadCheckBox() {}
 
@@ -130,7 +155,6 @@ int ConsoleEditor::loadFromFile() {
     int j = 0;
 
     while (fgets(fileContent, 100, file)) {
-
         if (fileContent[0] == '\302' && fileContent[1] == '\247') {
             switch (fileContent[2]) {
                 case '1':
@@ -145,136 +169,75 @@ int ConsoleEditor::loadFromFile() {
                     currentFrame = 3;
                     frames.push_back(new CheckBox());
                     break;
-                default: currentFrame = 0;
+                default:
+                    currentFrame = 0;
+                    j = 0;
             }
             continue;
         }
 
         switch (currentFrame) {
-
             case 1: {
-                auto textFrame = dynamic_cast<TextInformation *>(frames.back());
-                textLine *textLineHead = textFrame->getLineHead();
-                auto currentTextLine = dynamic_cast<textLine *>(getLastLine(textLineHead));
+                auto frame = dynamic_cast<TextInformation *>(frames.back());
 
-                start *firstChar = nullptr;
-                start *currentChar = nullptr;
-                for (int i = 0; (fileContent[i] != '\0') && (i < 100); i++) {
-                    if (fileContent[i] == '\n') {
-                        currentTextLine->next = new textLine;
-                        currentTextLine = dynamic_cast<textLine *>(currentTextLine->next);
+                if (frame->getLineHead()->content == nullptr) {
+                    frame->getLineHead()->content = loadLine(fileContent);
+                } else {
+                    auto *newLine = new textLine;
+                    newLine->content = loadLine(fileContent);
+                    newLine->next = nullptr;
 
-                        currentTextLine->content = nullptr;
-                        currentTextLine->next = nullptr;
-
-                        firstChar == nullptr;
-                        continue;
-                    }
-
-                    if (firstChar == nullptr) {
-                        firstChar = new start;
-                        firstChar->value = fileContent[i];
-                        firstChar->ptr = nullptr;
-
-                        currentTextLine->content = firstChar;
-                    } else {
-                        currentChar = new start;
-                        currentChar->value = fileContent[i];
-                        currentChar->ptr = nullptr;
-
-                        firstChar->ptr = currentChar;
-                        firstChar = firstChar->ptr;
-                    }
+                    auto currentLine = dynamic_cast<textLine *>(getLastLine(frame->getLineHead()));
+                    currentLine->next = newLine;
                 }
-            }
-                break;
+            } break;
             case 2: {
-                auto contactFrame = dynamic_cast<ContactInformation *>(frames.back());
-                infoLine *infoLineHead = contactFrame->getLineHead();
-                auto currentInfoLine = dynamic_cast<infoLine *>(getLastLine(infoLineHead));
+                auto frame = dynamic_cast<ContactInformation *>(frames.back());
 
-                start *firstChar = nullptr;
-                start *currentChar = nullptr;
-                
-                for (int i = 1; (fileContent[i] != '\0') && (i < 100); ++i) {
-                    if (fileContent[i] == '\n') {
-                        currentInfoLine->next = new infoLine;
-                        currentInfoLine = dynamic_cast<infoLine *>(currentInfoLine->next);
+                if (frame->getLineHead()->email == nullptr && j < 3) {
+                    if (j % 3 == 0) frame->getLineHead()->name = loadLine(fileContent);
+                    if (j % 3 == 1) frame->getLineHead()->surname = loadLine(fileContent);
+                    if (j % 3 == 2) frame->getLineHead()->email = loadLine(fileContent);
+                } else {
+                    if (j % 3 == 0) {
+                        auto *newLine = new infoLine;
+                        newLine->name = loadLine(fileContent);
+                        newLine->next = nullptr;
 
-                        currentInfoLine->name = nullptr;
-                        currentInfoLine->surname = nullptr;
-                        currentInfoLine->email = nullptr;
-                        currentInfoLine->next = nullptr;
-
-                        firstChar == nullptr;
-
-                        ++j;
-                        continue;
+                        auto currentLine = dynamic_cast<infoLine *>(getLastLine(frame->getLineHead()));
+                        currentLine->next = newLine;
+                        frame->incrementLinesCount();
                     }
 
-                    if (firstChar == nullptr) {
-                        firstChar = new start;
-                        firstChar->value = fileContent[i];
-                        firstChar->ptr = nullptr;
-
-                        if (j % 3 == 1) currentInfoLine->name = firstChar;
-                        if (j % 3 == 2) currentInfoLine->surname = firstChar;
-                        if (j % 3 == 0) currentInfoLine->email = firstChar;
-
-                    } else {
-                        currentChar = new start;
-                        currentChar->value = fileContent[i];
-                        currentChar->ptr = nullptr;
-
-                        firstChar->ptr = currentChar;
-                        firstChar = firstChar->ptr;
-                    }
+                    if (j % 3 == 1)
+                        dynamic_cast<infoLine *>(getLastLine(frame->getLineHead()))->surname = loadLine(fileContent);
+                    if (j % 3 == 2)
+                        dynamic_cast<infoLine *>(getLastLine(frame->getLineHead()))->email = loadLine(fileContent);
                 }
-            }
-                break;
+                ++j;
+            } break;
             case 3: {
-                auto checkBoxFrame = dynamic_cast<CheckBox *>(frames.back());
-                checkLine *checkBoxHead = checkBoxFrame->getLineHead();
-                auto currentCheckLine = dynamic_cast<checkLine *>(getLastLine(checkBoxHead));
+                auto frame = dynamic_cast<CheckBox *>(frames.back());
 
-                if (fileContent[0] == 0) currentCheckLine->status = false;
-                else if (fileContent[0] == 1) currentCheckLine->status = true;
+                if (frame->getLineHead()->context == nullptr) {
+                    frame->getLineHead()->context = loadLine(fileContent + 1);
+                    if (fileContent[0] == '1') frame->getLineHead()->status = true;
+                    else if (fileContent[0] == '0') frame->getLineHead()->status = false;
 
-                start *firstChar = nullptr;
-                start *currentChar = nullptr;
-                for (int i = 1; (fileContent[i] != '\0') && (i < 100); i++) {
-                    if (fileContent[i] == '\n' && i != 1) {
-                        currentCheckLine->next = new checkLine;
-                        currentCheckLine = dynamic_cast<checkLine *>(currentCheckLine->next);
+                } else {
+                    auto *newLine = new checkLine;
+                    newLine->context = loadLine(fileContent + 1);
+                    if (fileContent[0] == '1') newLine->status = true;
+                    else if (fileContent[0] == '0') newLine->status = false;
 
-                        currentCheckLine->context = nullptr;
-                        currentCheckLine->status = false;
-                        currentCheckLine->next = nullptr;
-
-                        firstChar == nullptr;
-                        continue;
-                    }
-
-                    if (firstChar == nullptr) {
-                        firstChar = new start;
-                        firstChar->value = fileContent[i];
-                        firstChar->ptr = nullptr;
-
-                        currentCheckLine->context = firstChar;
-                    } else {
-                        currentChar = new start;
-                        currentChar->value = fileContent[i];
-                        currentChar->ptr = nullptr;
-
-                        firstChar->ptr = currentChar;
-                        firstChar = firstChar->ptr;
-                    }
+                    auto currentLine = dynamic_cast<checkLine *>(getLastLine(frame->getLineHead()));
+                    currentLine->next = newLine;
+                    frame->incrementLinesCount();
                 }
-            }
-                break;
+            } break;
             default: continue;
-            }
         }
+    }
     fclose(file);
     printf("Content were successfully loaded from the file\n");
     return 0;

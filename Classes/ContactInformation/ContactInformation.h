@@ -29,6 +29,9 @@ public:
     void deleteInfo(std::stack<command *> &undoStack, int frameNumber);
 
     void printContent() override;
+    void incrementLinesCount() {
+        ++linesCount;
+    }
 
     [[nodiscard]] infoLine * getLineHead() const {
         return infoLineHead;

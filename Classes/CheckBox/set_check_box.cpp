@@ -13,7 +13,7 @@ void internalSetCheckBoxStatus(checkLine *lineNum, bool status, checkBoxCommand 
 
 void CheckBox::setCheckBoxInfo(std::stack<command *> &undoStack, int frameNumber) {
     int lineNumber = getNumber("Write the checkbox number to edit the info");
-    start * input = convertStringToLinkedList(getInput(), 32);
+    start * input = convertStringToLinkedList(getInput("Write the text for the checkbox: "), 32);
 
     auto newLine = dynamic_cast<checkLine *>(getLine(checkLineHead, lineNumber));
 
@@ -53,7 +53,7 @@ void CheckBox::newCheckLine(std::stack<command *> &undoStack, int frameNumber) {
 
     {
         auto newLine = dynamic_cast<checkLine *>(lastLine->next);
-        start * input = convertStringToLinkedList(getInput(), 32);
+        start * input = convertStringToLinkedList(getInput("Write the text for the checkbox: "), 32);
         newLine->context = input;
     }
 

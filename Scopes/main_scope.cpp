@@ -4,6 +4,9 @@
 int consoleEditorScope() {
     ConsoleEditor console_editor = ConsoleEditor();
 
+    std::cout << "You are working with the console editor: " << std::endl << std::endl;
+    ConsoleEditor::printHelpInfo();
+
     while (true) {
         std::string command = getCommand();
 

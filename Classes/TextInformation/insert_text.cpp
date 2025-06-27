@@ -93,7 +93,7 @@ void TextInformation::insert(std::stack<command *> &undoStack, int frameNumber) 
     cmd->lineNumber = lineNumber;
     cmd->index = index + 1;
 
-    std::string insertText = getInput();
+    std::string insertText = getInput("Write the text to insert: ");
     start *newStringFirst = nullptr;
 
     newStringFirst = convertStringToLinkedList(insertText, 32);
@@ -107,7 +107,7 @@ void TextInformation::insert(std::stack<command *> &undoStack, int frameNumber) 
 }
 
 void TextInformation::insert_replacement(std::stack<command *> &undoStack, int frameNumber) {
-    std::string input = getInput();
+    std::string input = getInput("Write the text to insert with replacement: ");
     start *first = convertStringToLinkedList(input, 32);
     int size = getSize(first);
 

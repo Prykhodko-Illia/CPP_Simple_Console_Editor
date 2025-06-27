@@ -8,7 +8,7 @@ line * getLastLine(line *);
 line * getLine(line *, int);
 textLine * loadFromFile(textLine *);
 
-std::string getInput();
+std::string getInput(const std::string &);
 std::string getCommand();
 
 start * convertStringToLinkedList(const std::string &, int);
